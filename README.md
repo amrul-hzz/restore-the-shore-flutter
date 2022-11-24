@@ -12,18 +12,18 @@ Repository ini digunakan untuk Proyek Akhir Semester pada mata kuliah PBP semest
 ## 📚 Deskripsi aplikasi (nama aplikasi, fungsi aplikasi, dan peran/aktor pengguna aplikasi) 
 - Nama aplikasi : Restore The Shore
 - Fungsi aplikasi : Aplikasi ini digunakan sebagai sosial media dan wadah interaksi antara pencinta lingkungan dan pengguna yang memiliki keinginan untuk membersihkan pantai. Aplikasi ini berisikan jadwal dan tempat dari event pembersihan sampah beserta forum untuk bertukar pendapat/bersosialisasi. Web ini bertujuan untuk menumbuhkan keinginan masyarakat untuk berkontribusi dalam memelihara lingkungan hidup terutama kebersihan pantai.
-- Role atau peran pengguna beserta deskripsinya (karena bisa saja lebih dari satu jenis pengguna yang mengakses aplikasi)
+- Role atau peran pengguna beserta deskripsinya (karena bisa saja lebih dari satu jenis pengguna yang mengakses aplikasi)\
 🖊 Role Guest User (Non Logged In)
 - Mengakses modul Landing Page.
 - Mengakses modul Register dan Login.
 - Mengakses modul TimeLine dan jika meng-klik timeline tersebut, user akan di-redirect ke modul Register dan Login.
-- Mengakses modul Leaderboard, namun tidak bisa me-post quote.
+- Mengakses modul Leaderboard, namun tidak bisa me-post quote.\
 🖊 Role Logged In User
 - Semua modul yang dapat diakses guest user dapat diakses oleh logged-in user.
 - Mengakses modul My Account.
 - Mengakses modul Forum dan memberikan komentar.
 - Dapat mendaftarkan diri ke event di modul TimeLine.
-- Dapat me-post quote ke database aplikasi di modul Leaderboard
+- Dapat me-post quote ke database aplikasi di modul Leaderboard\
 🖊 Role Admin
 - Semua modul yang dapat diakses guest user dan logged-in user - dapat diakses oleh admin.
 - Mengakses modul Create Event.
