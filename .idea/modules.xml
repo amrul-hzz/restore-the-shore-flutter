@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/restore-the-shore-flutter.iml" filepath="$PROJECT_DIR$/.idea/restore-the-shore-flutter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/restore_the_shore.iml" filepath="$PROJECT_DIR$/restore_the_shore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/restore_the_shore_android.iml" filepath="$PROJECT_DIR$/android/restore_the_shore_android.iml" />
     </modules>
   </component>
 </project>
