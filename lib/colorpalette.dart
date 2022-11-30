@@ -30,7 +30,7 @@ class ColorPalette {
         600: Color.fromRGBO(49,60,169, .7),
         700: Color.fromRGBO(49,60,169, .8),
         800: Color.fromRGBO(49,60,169, .9),
-        900: Color.fromRGBO(49,60,169, 1),
+        900: Color.fromRGBO(7, 10, 43, 1.0),
       },
   );
 }
