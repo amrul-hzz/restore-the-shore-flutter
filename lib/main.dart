@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restore_the_shore_flutter/colorpalette.dart';
 import 'package:restore_the_shore_flutter/myAccount/myAccount.dart';
+import 'package:restore_the_shore_flutter/nav_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,8 +18,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         'home' : (context) => const MyHomePage(),
-        'leaderboard' : (context) => const MyHomePage(),
+        'leaderboard' : (context) => const MyHomePage(), // Nanti ini ganti aja Page nya
         'my-account' : (context) => const MyAccountPage(),
+        // Nanti tambahin masing masing page nya ke sini
       },
       theme: ThemeData(
         primarySwatch: ColorPalette.secondaryColor,
@@ -38,43 +40,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
-  List<String> listRoute = ['home', 'leaderboard', 'my-account'];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      Navigator.pushReplacementNamed(context,listRoute[_selectedIndex]);
-    });
-  }
-
-  BottomNavigationBar buildBottomNavigationBar() {
-    return BottomNavigationBar(
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.onetwothree),
-          label: 'Leaderboard',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'My Account',
-        ),
-      ],
-      currentIndex: _selectedIndex, //New
-      onTap: _onItemTapped,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: buildBottomNavigationBar(),
+      bottomNavigationBar: const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
