@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restore_the_shore_flutter/colorpalette.dart';
+import 'package:restore_the_shore_flutter/nav_bar.dart';
 
 // This page is modified from : https://www.fluttertemplates.dev/widgets/must_haves/profile_page
 
@@ -11,44 +12,44 @@ class MyAccountPage extends StatefulWidget {
 }
 
 class _MyAccountPageState extends State<MyAccountPage> {
-  int _selectedIndex = 2;
-  List<String> listRoute = ['home', 'leaderboard', 'my-account'];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      Navigator.pushReplacementNamed(context, listRoute[_selectedIndex]);
-    });
-  }
-
-  BottomNavigationBar buildBottomNavigationBar() {
-    return BottomNavigationBar(
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.onetwothree),
-          label: 'Leaderboard',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'My Account',
-        ),
-      ],
-      currentIndex: _selectedIndex, //New
-      onTap: _onItemTapped,
-    );
-  }
+  // int _selectedIndex = 2;
+  // List<String> listRoute = ['home', 'leaderboard', 'my-account'];
+  //
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //     Navigator.pushReplacementNamed(context, listRoute[_selectedIndex]);
+  //   });
+  // }
+  //
+  // BottomNavigationBar buildBottomNavigationBar() {
+  //   return BottomNavigationBar(
+  //     showSelectedLabels: false,
+  //     showUnselectedLabels: false,
+  //     items: const <BottomNavigationBarItem>[
+  //       BottomNavigationBarItem(
+  //         icon: Icon(Icons.home),
+  //         label: 'Home',
+  //       ),
+  //       BottomNavigationBarItem(
+  //         icon: Icon(Icons.onetwothree),
+  //         label: 'Leaderboard',
+  //       ),
+  //       BottomNavigationBarItem(
+  //         icon: Icon(Icons.person),
+  //         label: 'My Account',
+  //       ),
+  //     ],
+  //     currentIndex: _selectedIndex, //New
+  //     onTap: _onItemTapped,
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // Menambahkan bottom nav bar
-      bottomNavigationBar: buildBottomNavigationBar(),
+      bottomNavigationBar: const NavBar(),
       body: Column(
         children: [
           const Expanded(flex: 2, child: _TopPortion()),
