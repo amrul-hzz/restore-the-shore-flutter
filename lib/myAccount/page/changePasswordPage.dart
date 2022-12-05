@@ -20,6 +20,7 @@ class _MyPasswordFormPageState extends State<MyPasswordFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 1,
         title: const Text('Change Password'),
       ),
       body: Form(

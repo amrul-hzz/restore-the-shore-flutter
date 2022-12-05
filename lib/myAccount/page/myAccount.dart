@@ -5,6 +5,8 @@ import 'package:restore_the_shore_flutter/myAccount/page/changePasswordPage.dart
 import 'package:restore_the_shore_flutter/myAccount/page/myEvent.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myPost.dart';
 
+import 'package:restore_the_shore_flutter/forum/page/forum_page.dart';
+
 // This page is modified from : https://www.fluttertemplates.dev/widgets/must_haves/profile_page
 
 class MyAccountPage extends StatefulWidget {
