@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restore_the_shore_flutter/colorpalette.dart';
-import 'package:restore_the_shore_flutter/myAccount/myAccount.dart';
+import 'package:restore_the_shore_flutter/myAccount/page/myAccount.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 
 void main() {
