@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restore_the_shore_flutter/colorpalette.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
+import 'package:restore_the_shore_flutter/forum/page/forum_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         'home' : (context) => const MyHomePage(),
         'leaderboard' : (context) => const MyHomePage(), // Nanti ini ganti aja Page nya
         'my-account' : (context) => const MyHomePage(),
+        'forum': (context) => const ForumPage(),
         // Nanti tambahin masing masing page nya ke sini
       },
       theme: ThemeData(

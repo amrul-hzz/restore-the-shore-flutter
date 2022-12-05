@@ -11,7 +11,7 @@ class _NavBarState extends State<NavBar> {
   static int _selectedIndex = 0;
 
   // Tambahin route name yang udah ditambahin di main ke sini, urutannya sesuain aja
-  static List<String> listRoute = ['home', 'leaderboard', 'my-account'];
+  static List<String> listRoute = ['home', 'leaderboard', 'my-account', 'forum'];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -38,6 +38,10 @@ class _NavBarState extends State<NavBar> {
           icon: Icon(Icons.person),
           label: 'My Account',
         ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.chat), // [PROBLEM] ntah kenapa icon di navbar jd putih
+          label:'Forum',
+        )
       ],
       currentIndex: _selectedIndex, //New
       onTap: _onItemTapped,
