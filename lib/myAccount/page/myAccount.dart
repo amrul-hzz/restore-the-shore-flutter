@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:restore_the_shore_flutter/colorpalette.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/changePasswordPage.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myEvent.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myPost.dart';
-
 import 'package:restore_the_shore_flutter/forum/page/forum_page.dart';
 
 // This page is modified from : https://www.fluttertemplates.dev/widgets/must_haves/profile_page
@@ -24,10 +25,11 @@ class _MyAccountPageState extends State<MyAccountPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       // Menambahkan bottom nav bar
       bottomNavigationBar: const NavBar(),
-      body: Column(
+      body: !request.loggedIn ? Column(
         children: [
           Expanded(
               flex: 2,
@@ -197,6 +199,35 @@ class _MyAccountPageState extends State<MyAccountPage> {
             ),
           ),
         ],
+      ) : Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  const Color.fromRGBO(93, 192, 211, 1.0),
+                  ColorPalette.secondaryColor.shade800
+                ]),
+            ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'You need to Login',
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20,),
+              ElevatedButton(
+                  onPressed: () {},
+                  child: const Text("Login"),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -16,7 +16,7 @@ class _MyPostPageState extends State<MyPostPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        title: const Text('Change Password'),
+        title: const Text('My Posts'),
       ),
       body: Center(
         child: Column(

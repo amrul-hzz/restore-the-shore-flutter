@@ -16,7 +16,7 @@ class _MyEventPageState extends State<MyEventPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        title: const Text('Change Password'),
+        title: const Text('Events History'),
       ),
       body: Center(
         child: Column(
