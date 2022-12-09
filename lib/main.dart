@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restore_the_shore_flutter/colorpalette.dart';
+import 'package:restore_the_shore_flutter/leaderboard/leaderboard.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         'home' : (context) => const MyHomePage(),
-        'leaderboard' : (context) => const MyHomePage(), // Nanti ini ganti aja Page nya
+        'leaderboard' : (context) => const LeaderboardPage(), // Nanti ini ganti aja Page nya
         'my-account' : (context) => const MyHomePage(),
         // Nanti tambahin masing masing page nya ke sini
       },
