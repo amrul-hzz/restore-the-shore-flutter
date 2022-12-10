@@ -14,10 +14,10 @@ class _NavBarState extends State<NavBar> {
   // Tambahin route name yang udah ditambahin di main ke sini, urutannya sesuain aja
   static List<String> listRoute = [
     'home',
+    'forum',
+    'create-event',
     'leaderboard',
     'my-account',
-    'create-event',
-    'login'
   ];
 
   void _onItemTapped(int index) {
@@ -32,11 +32,22 @@ class _NavBarState extends State<NavBar> {
     return BottomNavigationBar(
       showSelectedLabels: false,
       showUnselectedLabels: false,
+      unselectedItemColor: ColorPalette.secondaryColor,
+      selectedItemColor: ColorPalette.primaryColor,
       items: const <BottomNavigationBarItem>[
         // Nanti tambahin item nya kesini sesuai urutan
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon:
+              Icon(Icons.chat), // [PROBLEM] ntah kenapa icon di navbar jd putih
+          label: 'Forum',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.add),
+          label: 'Create Event',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.onetwothree),
@@ -46,19 +57,9 @@ class _NavBarState extends State<NavBar> {
           icon: Icon(Icons.person),
           label: 'My Account',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Create Event',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.local_airport),
-          label: 'Login',
-        ),
       ],
       currentIndex: _selectedIndex, //New
       onTap: _onItemTapped,
-      unselectedItemColor: ColorPalette.secondaryColor,
-      selectedItemColor: ColorPalette.primaryColor,
     );
   }
 }
