@@ -10,9 +10,9 @@ String commentToJson(List<Comment> data) => json.encode(List<dynamic>.from(data.
 
 class Comment {
     Comment({
-        this.model,
-        this.pk,
-        this.fields,
+        required this.model,
+        required this.pk,
+        required this.fields,
     });
 
     String model;
@@ -34,11 +34,11 @@ class Comment {
 
 class Fields {
     Fields({
-        this.creator,
-        this.creatorName,
-        this.date,
-        this.content,
-        this.originalPostId,
+        required this.creator,
+        required this.creatorName,
+        required this.date,
+        required this.content,
+        required this.originalPostId,
     });
 
     int creator;

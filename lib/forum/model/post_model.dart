@@ -10,9 +10,9 @@ String postToJson(List<Post> data) => json.encode(List<dynamic>.from(data.map((x
 
 class Post {
     Post({
-        this.model,
-        this.pk,
-        this.fields,
+        required this.model,
+        required this.pk,
+        required this.fields,
     });
 
     String model;
@@ -34,11 +34,11 @@ class Post {
 
 class Fields {
     Fields({
-        this.creator,
-        this.creatorName,
-        this.date,
-        this.content,
-        this.image,
+        required this.creator,
+        required this.creatorName,
+        required this.date,
+        required this.content,
+        required this.image,
     });
 
     int creator;
