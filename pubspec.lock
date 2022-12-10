@@ -246,11 +246,7 @@ packages:
       name: pbp_django_auth
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
-    version: "0.3.0"
-=======
     version: "0.2.3"
->>>>>>> d4702ef95c09364f98be8250383b879df96a4748
   platform:
     dependency: transitive
     description:
