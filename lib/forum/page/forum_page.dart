@@ -4,6 +4,7 @@ import 'package:restore_the_shore_flutter/colorpalette.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+
 //
 
 class ForumPage extends StatefulWidget {
@@ -24,15 +25,8 @@ class _ForumPageState extends State<ForumPage> {
     return Scaffold(
       bottomNavigationBar: const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
       body: request.loggedIn
-      ? Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
+      ? const Text(
               'Forum Page Under Construction',
-            ),
-          ],
-        ),
       )
 
       : Container(

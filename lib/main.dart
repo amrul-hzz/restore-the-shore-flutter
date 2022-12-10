@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restore_the_shore_flutter/colorpalette.dart';
+import 'package:restore_the_shore_flutter/leaderboard/leaderboard.dart';
+import 'package:restore_the_shore_flutter/myAccount/page/myAccount.dart';
+import 'package:restore_the_shore_flutter/create-event/create_event.dart';
+import 'package:restore_the_shore_flutter/myAccount/page/login.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 import 'package:restore_the_shore_flutter/forum/page/forum_page.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -15,20 +19,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Restore The Shore',
-      initialRoute: '/',
-      routes: {
-        'home' : (context) => const MyHomePage(),
-        'leaderboard' : (context) => const MyHomePage(), // Nanti ini ganti aja Page nya
-        'my-account' : (context) => const MyHomePage(),
-        'forum': (context) => const ForumPage(),
-        // Nanti tambahin masing masing page nya ke sini
-      },
-      theme: ThemeData(
-        primarySwatch: ColorPalette.secondaryColor,
-      ),
-      home: const MyHomePage(),
+    return Provider(
+        create: (_) {
+      CookieRequest request = CookieRequest();
+      return request;
+    },
+      child : MaterialApp(
+        title: 'Restore The Shore',
+        initialRoute: '/',
+        routes: {
+          'home' : (context) => const MyHomePage(),
+          'forum': (context) => const ForumPage(),
+          'create-event': (context) => const CreateEventPage(),
+          'leaderboard' : (context) => const LeaderboardPage(), // Nanti ini ganti aja Page nya
+          'my-account' : (context) => const MyAccountPage(),
+          'login': (context) => const LoginPage(),
+          // Nanti tambahin masing masing page nya ke sini
+        },
+        theme: ThemeData(
+          primarySwatch: ColorPalette.secondaryColor,
+        ),
+        home: const MyHomePage(),
+      )
     );
   }
 }
