@@ -3,7 +3,6 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:restore_the_shore_flutter/colorpalette.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
-import 'package:restore_the_shore_flutter/myAccount/page/changePasswordPage.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myEvent.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myPost.dart';
 
@@ -35,9 +34,9 @@ class _MyAccountPageState extends State<MyAccountPage> {
                 if (snapshot.data == null) {
                   return const Center(child: CircularProgressIndicator());
                 } else {
-                  _point = snapshot.data[0].fields.user_point;
-                  _username = snapshot.data[0].fields.username;
-                  _numOfEvent = snapshot.data[0].fields.events_joined.length;
+                  _point = snapshot.data[0]["fields"]["user_point"];
+                  _username = snapshot.data[0]["fields"]["username"];
+                  _numOfEvent = snapshot.data[0]["fields"]["events_joined"].length;
 
                   return Column(
                     children: [
@@ -107,21 +106,16 @@ class _MyAccountPageState extends State<MyAccountPage> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  TextButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                const MyPasswordFormPage()));
-                                      },
-                                      child: const Text("Change Password")),
-                                  TextButton(
-                                      onPressed: (){},//request.logout("LOGOUTURL"),
-                                      child: const Text("Logout", style: TextStyle(color: Colors.redAccent),)),
+                                  ElevatedButton(
+                                    onPressed:
+                                        () {}, //request.logout("LOGOUTURL"),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.redAccent,
+                                    ),
+                                    child: const Text("Logout"),
+                                  ),
                                 ],
                               ),
-
                               const SizedBox(height: 16),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -249,7 +243,9 @@ class _MyAccountPageState extends State<MyAccountPage> {
                       height: 20,
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'login');
+                      },
                       child: const Text("Login"),
                     ),
                   ],

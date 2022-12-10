@@ -20,8 +20,7 @@ class _MyEventPageState extends State<MyEventPage> {
           title: const Text('Events History'),
         ),
         body: FutureBuilder(
-            future: request
-                .get("https://restore-the-shore.up.railway.app/timeline/json/"),
+            future: request.get("https://restore-the-shore.up.railway.app/timeline/json/"),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
                 return const Center(child: CircularProgressIndicator());
@@ -45,35 +44,33 @@ class _MyEventPageState extends State<MyEventPage> {
                   return ListView.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, index) => Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 10),
-                      padding: const EdgeInsets.all(14.0),
+                      padding: const EdgeInsets.all(5),
                       child: Card(
-                        elevation: 2,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              flex: 2,
-                              child: Text(
-                                "${snapshot.data[index].fields.namaEvent} @${snapshot.data[index].fields.namaPantai}",
-                                style: const TextStyle(
-                                  fontSize: 20.0,
+                        child: Padding(padding: EdgeInsets.all(10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${snapshot.data[index]["fields"]["namaEvent"]} @${snapshot.data[index]["fields"]["namaPantai"]}",
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 24,
                                 ),
+                                overflow: TextOverflow.clip,
                               ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Text(
-                                "${snapshot.data[index].fields.tanggalMulai.toString().substring(0, 10)} - ${snapshot.data[index].fields.tanggalAkhir.toString().substring(0, 10)}",
-                                style: const TextStyle(
-                                  fontSize: 16.0,
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Text(
+                                "${snapshot.data[index]["fields"]["tanggalMulai"].toString().substring(0, 10)}  -  ${snapshot.data[index]["fields"]["tanggalAkhir"].toString().substring(0, 10)}",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 18,
                                 ),
-                              ),
-                            ),
-                          ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
