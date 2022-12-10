@@ -33,7 +33,7 @@ class _ForumPageState extends State<ForumPage> {
             ),
           ],
         ),
-      ),
+      )
 
       : Container(
         decoration: BoxDecoration(
