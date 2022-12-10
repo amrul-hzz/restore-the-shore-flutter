@@ -27,7 +27,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
     return Scaffold(
       // Menambahkan bottom nav bar
       bottomNavigationBar: const NavBar(),
-      body: !request.loggedIn
+      body: request.loggedIn
           ? FutureBuilder(
               future: request.get(
                   "https://restore-the-shore.up.railway.app/myaccount/json/"),
