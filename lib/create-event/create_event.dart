@@ -257,7 +257,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                                 Text('Judul : $_judul'),
                                 Text('Nominal : $_nominal'),
                                 Text('Jenis : $jenis'),
-                                Text('Tanggal : $tanggal'),
+                                Text('Tanggal : $startDate'),
                                 TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);

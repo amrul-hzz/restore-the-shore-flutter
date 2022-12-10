@@ -16,7 +16,8 @@ class _NavBarState extends State<NavBar> {
     'home',
     'leaderboard',
     'my-account',
-    'create-event'
+    'create-event',
+    'login'
   ];
 
   void _onItemTapped(int index) {
@@ -48,6 +49,10 @@ class _NavBarState extends State<NavBar> {
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Create Event',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.local_airport),
+          label: 'Login',
         ),
       ],
       currentIndex: _selectedIndex, //New
