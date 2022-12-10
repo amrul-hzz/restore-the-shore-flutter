@@ -9,16 +9,16 @@ class LeaderboardPage extends StatefulWidget {
 }
 
 class _LeaderboardPageState extends State<LeaderboardPage> {
-  final _formKey = GlobalKey<FormState>();
-  String _judul = "";
+  final _formKeyQuote = GlobalKey<FormState>();
+  final _formKeyUsers = GlobalKey<FormState>();
+  String _username = "";
   String _quote = "";
-  int _nominal = 0;
   String? jenis;
   // List<String> listJenis = <String>['Pemasukkan', 'Pengeluaran'];
   DateTime? tanggal;
 
   void submitForm(BuildContext context) {
-    if (_formKey.currentState!.validate()) {
+    if (_formKeyQuote.currentState!.validate()) {
       
     }
   }
@@ -56,46 +56,104 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
               ),
               
             ),
-            Form(
-              key: _formKey,
+            Padding(
+              padding: EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Write your message...",
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5.0),
+                  const Text("Congratulate and motivate your friends!"),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Form(
+                          key: _formKeyQuote,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    hintText: "Write your message...",
+                                    hintStyle: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    constraints: BoxConstraints(maxHeight: 36),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                                  ),
+                                  // Validator sebagai validasi form
+                                  validator: (String? value) {
+                                    if (value == null || value.isEmpty) {
+                                        return 'Pesan tidak boleh kosong!';
+                                    }
+                                    return null;
+                                  },
+                                )
+                              ),
+                            ],
+                          )
                         ),
                       ),
-                      // Validator sebagai validasi form
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                            return 'Pesan tidak boleh kosong!';
-                        }
-                        return null;
-                      },
-                    )
+                      ElevatedButton(
+                        onPressed: () {
+                          // Route menu ke halaman form
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Send"),
+                      )
+                    ],
                   ),
                 ],
               )
             ),
-            const Spacer(), // Beri jarak dengan Button
-            TextButton(
-              onPressed: () => submitForm(context),
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue),
-                  foregroundColor: MaterialStateProperty.all(Colors.white)),
-              child: const Padding(
-                padding: EdgeInsets.all(10),
-                child: Text("Simpan"),
-              ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
+                    children: [
+                      Expanded(
+                        child: Form(
+                          key: _formKeyUsers,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0, bottom: 8.0, top: 8.0),
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    hintText: "Search for user...",
+                                    hintStyle: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 14,
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    constraints: BoxConstraints(maxHeight: 36),
+                                    contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                                  ),
+                                  // Validator sebagai validasi form
+                                  validator: (String? value) {
+                                    if (value == null || value.isEmpty) {
+                                        return 'Username cannot be empty!';
+                                    }
+                                    return null;
+                                  },
+                                )
+                              ),
+                            ],
+                          )
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Route menu ke halaman form
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Send"),
+                      )
+                    ],
+                  ),
             ),
           ],
         ),
