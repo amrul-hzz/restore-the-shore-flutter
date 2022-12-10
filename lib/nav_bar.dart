@@ -15,7 +15,7 @@ class _NavBarState extends State<NavBar> {
   static List<String> listRoute = [
     'home',
     'forum',
-    'create-event'
+    'create-event',
     'leaderboard',
     'my-account',
   ];
@@ -44,7 +44,7 @@ class _NavBarState extends State<NavBar> {
           label:'Forum',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person),
+          icon: Icon(Icons.add),
           label: 'Create Event',
         ),
         BottomNavigationBarItem(

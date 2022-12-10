@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restore_the_shore_flutter/colorpalette.dart';
+import 'package:restore_the_shore_flutter/leaderboard/leaderboard.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myAccount.dart';
 import 'package:restore_the_shore_flutter/create-event/create_event.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
@@ -27,10 +28,10 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           'home' : (context) => const MyHomePage(),
-          'leaderboard' : (context) => const MyHomePage(), // Nanti ini ganti aja Page nya
-          'my-account' : (context) => const MyAccountPage(),
           'forum': (context) => const ForumPage(),
           'create-event': (context) => const CreateEventPage(),
+          'leaderboard' : (context) => const LeaderboardPage(), // Nanti ini ganti aja Page nya
+          'my-account' : (context) => const MyAccountPage(),
           // Nanti tambahin masing masing page nya ke sini
         },
         theme: ThemeData(
@@ -55,8 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar:
-          const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
+      bottomNavigationBar: const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
