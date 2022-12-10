@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restore_the_shore_flutter/colorpalette.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myAccount.dart';
+import 'package:restore_the_shore_flutter/create-event/create_event.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 import 'package:restore_the_shore_flutter/forum/page/forum_page.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
           'leaderboard' : (context) => const MyHomePage(), // Nanti ini ganti aja Page nya
           'my-account' : (context) => const MyAccountPage(),
           'forum': (context) => const ForumPage(),
+          'create-event': (context) => const CreateEventPage(),
           // Nanti tambahin masing masing page nya ke sini
         },
         theme: ThemeData(
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
-  final String title = "Restore The Shore";
+  final String title = 'Restore The Shore';
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -53,11 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 1,
-        title: Text(widget.title),
-      ),
-      bottomNavigationBar: const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
+      bottomNavigationBar:
+          const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -73,4 +72,3 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 }
-
