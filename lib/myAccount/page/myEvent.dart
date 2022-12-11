@@ -27,19 +27,17 @@ class _MyEventPageState extends State<MyEventPage> {
                 return const Center(child: CircularProgressIndicator());
               } else {
                 if (!snapshot.hasData) {
-                  return Column(
-                    children: [
-                      const Text(
-                        "You haven't joined any events :(",
-                        style:
-                            TextStyle(color: Color(0xff59A5D8), fontSize: 20),
-                      ),
-                      const SizedBox(height: 8),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text("Join event"),
-                      ),
-                    ],
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          "You haven't joined any events :(",
+                          style: TextStyle(fontSize: 24),
+                        ),
+                        SizedBox(height: 20),
+                      ],
+                    ),
                   );
                 } else {
                   return ListView.builder(

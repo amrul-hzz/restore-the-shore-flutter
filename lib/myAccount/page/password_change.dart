@@ -85,6 +85,11 @@ class _MyPasswordFormPageState extends State<MyPasswordFormPage> {
                     ),
                   ),
                   // Menambahkan behavior saat data disimpan
+                  onChanged: (String? value) {
+                    setState(() {
+                      _newPassword1 = value!;
+                    });
+                  },
                   onSaved: (String? value) {
                     setState(() {
                       _newPassword1 = value!;
@@ -117,6 +122,11 @@ class _MyPasswordFormPageState extends State<MyPasswordFormPage> {
                     ),
                   ),
                   // Menambahkan behavior saat data disimpan
+                  onChanged: (String? value) {
+                    setState(() {
+                      _newPassword2 = value!;
+                    });
+                  },
                   onSaved: (String? value) {
                     setState(() {
                       _newPassword2 = value!;
@@ -126,6 +136,8 @@ class _MyPasswordFormPageState extends State<MyPasswordFormPage> {
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter password!';
+                    } else if (value != _newPassword1) {
+                      return 'Password did not match!';
                     }
                     return null;
                   },
@@ -165,13 +177,15 @@ class _MyPasswordFormPageState extends State<MyPasswordFormPage> {
                               padding: const EdgeInsets.all(20.0),
                               shrinkWrap: true,
                               children: <Widget>[
-                                const Center(child: Text('Change password success!')),
+                                const Center(child: Text('Change password success!',
+                                  style: TextStyle(fontSize: 20),
+                                )),
                                 TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
                                     Navigator.pop(context);
                                   },
-                                  child: const Text('Kembali'),
+                                  child: const Text('Back'),
                                 ),
                               ],
                             ),

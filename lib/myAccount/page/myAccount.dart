@@ -106,6 +106,37 @@ class _MyAccountPageState extends State<MyAccountPage> {
                                   fontSize: 24,
                                 ),
                               ),
+                              const SizedBox(height: 6),
+                              Chip(
+                                shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                  color: _point >= 200
+                                      ? Color.fromRGBO(229, 228, 226, 1)
+                                      : _point >= 150
+                                      ? Color.fromRGBO(255,215,0, 1)
+                                      : _point >= 100
+                                      ? Color.fromRGBO(192,192,192, 1)
+                                      : _point >= 50
+                                      ? Color.fromRGBO(205, 127, 50, 1)
+                                      : ColorPalette.primaryColor),
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                label: Text(
+                                  _point >= 200
+                                  ? "Platinum"
+                                      : _point >= 150
+                                  ? "Gold"
+                                      : _point >= 100
+                                  ? "Silver"
+                                      : _point >= 50
+                                  ? "Bronze"
+                                      : "No Badge"
+                                ),
+                                backgroundColor: Colors.transparent,
+                              ),
+
                               const SizedBox(height: 16),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,

@@ -32,7 +32,7 @@ class _MyPostPageState extends State<MyPostPage> {
             if (snapshot.data == null) {
               return const Center(child: CircularProgressIndicator());
             } else {
-              if (!snapshot.hasData) {
+              if (snapshot.data.length == 0) {
                 return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +41,6 @@ class _MyPostPageState extends State<MyPostPage> {
                           "You haven't post anything :(",
                           style: TextStyle(
                             fontSize: 24,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         SizedBox(
