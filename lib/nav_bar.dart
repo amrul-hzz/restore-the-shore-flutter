@@ -23,7 +23,7 @@ class _NavBarState extends State<NavBar> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      Navigator.pushReplacementNamed(context,listRoute[_selectedIndex]);
+      Navigator.pushReplacementNamed(context, listRoute[_selectedIndex]);
     });
   }
 
@@ -34,14 +34,16 @@ class _NavBarState extends State<NavBar> {
       showUnselectedLabels: false,
       unselectedItemColor: ColorPalette.secondaryColor,
       selectedItemColor: ColorPalette.primaryColor,
-      items: const <BottomNavigationBarItem>[ // Nanti tambahin item nya kesini sesuai urutan
+      items: const <BottomNavigationBarItem>[
+        // Nanti tambahin item nya kesini sesuai urutan
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.chat), // [PROBLEM] ntah kenapa icon di navbar jd putih
-          label:'Forum',
+          icon:
+              Icon(Icons.chat), // [PROBLEM] ntah kenapa icon di navbar jd putih
+          label: 'Forum',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.add),
