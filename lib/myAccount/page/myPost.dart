@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 import 'package:restore_the_shore_flutter/colorpalette.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
+import 'package:restore_the_shore_flutter/forum/model/post_model.dart';
 
 class MyPostPage extends StatefulWidget {
   const MyPostPage({super.key});
@@ -23,8 +27,7 @@ class _MyPostPageState extends State<MyPostPage> {
         title: const Text('My Posts'),
       ),
       body: FutureBuilder(
-          future: request
-              .get("https://restore-the-shore.up.railway.app/forum/json-by-user"),
+          future: fetchMyPosts(request),
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return const Center(child: CircularProgressIndicator());
@@ -33,15 +36,15 @@ class _MyPostPageState extends State<MyPostPage> {
                 return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        const Text(
+                      children: const <Widget>[
+                        Text(
                           "You haven't post anything :(",
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 20,
                         ),
                       ],
@@ -68,7 +71,7 @@ class _MyPostPageState extends State<MyPostPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${snapshot.data![index]["fields"]["creator_name"]}",
+                              "${snapshot.data![index].fields.creatorName}",
                               style: const TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
@@ -77,12 +80,12 @@ class _MyPostPageState extends State<MyPostPage> {
 
                             const SizedBox(height: 10),
                             
-                            Image(image: NetworkImage("${snapshot.data![index]["fields"]["image"]}")),
+                            Image(image: NetworkImage("${snapshot.data![index].fields.image}")),
 
                             const SizedBox(height: 10),
 
                             Text(
-                              "${snapshot.data![index]["fields"]["content"]}",
+                              "${snapshot.data![index].fields.content}",
                               style: const TextStyle(
                                 fontSize: 18.0,
                               ),
@@ -97,4 +100,20 @@ class _MyPostPageState extends State<MyPostPage> {
           })
     );
   }
+}
+
+Future<List<Post>> fetchMyPosts(request) async{
+  var url = "https://restore-the-shore.up.railway.app/forum/json-by-user";
+  var response = await request.get(url);
+
+  var data = response;
+
+  List<Post> listPosts = [];
+  for (var d in data){
+    if (d != null){
+      listPosts.add(Post.fromJson(d));
+    }
+  }
+
+  return listPosts;
 }

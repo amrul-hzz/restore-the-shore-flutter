@@ -53,18 +53,18 @@ class _MyEventPageState extends State<MyEventPage> {
                             children: [
                               Text(
                                 "${snapshot.data[index]["fields"]["namaEvent"]} @${snapshot.data[index]["fields"]["namaPantai"]}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 24,
                                 ),
                                 overflow: TextOverflow.clip,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 16,
                               ),
                               Text(
                                 "${snapshot.data[index]["fields"]["tanggalMulai"].toString().substring(0, 10)}  -  ${snapshot.data[index]["fields"]["tanggalAkhir"].toString().substring(0, 10)}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.w300,
                                   fontSize: 18,
                                 ),

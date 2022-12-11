@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+
 import 'package:restore_the_shore_flutter/colorpalette.dart';
+import 'package:restore_the_shore_flutter/myAccount/model/UserProfile.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myEvent.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myPost.dart';
@@ -28,16 +30,15 @@ class _MyAccountPageState extends State<MyAccountPage> {
       bottomNavigationBar: const NavBar(),
       body: request.loggedIn
           ? FutureBuilder(
-              future: request.get(
-                  "https://restore-the-shore.up.railway.app/myaccount/json/"),
+              future: fetchUserProfile(request),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
                   return const Center(child: CircularProgressIndicator());
                 } else {
-                  _point = snapshot.data[0]["fields"]["user_point"];
-                  _username = snapshot.data[0]["fields"]["username"];
+                  _point = snapshot.data[0].fields.userPoint;
+                  _username = snapshot.data[0].fields.username;
                   _numOfEvent =
-                      snapshot.data[0]["fields"]["events_joined"].length;
+                      snapshot.data[0].fields.eventsJoined.length;
 
                   return Column(
                     children: [
@@ -205,7 +206,11 @@ class _MyAccountPageState extends State<MyAccountPage> {
                                   ElevatedButton(
                                     onPressed: () async {
                                       final response = await request.logout(
-                                          "https://restore-the-shore.up.railway.app/authentication/logout/");
+                                          "https://restore-the-shore.up.railway.app/authentication/logout");
+                                      if (!request.loggedIn) {
+                                        NavBarState.selectedIndex = 0;
+                                        Navigator.pushReplacementNamed(context, 'home');
+                                      }
                                     }, //request.logout("LOGOUTURL"),
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.redAccent,
