@@ -3,6 +3,7 @@
 //     final post = postFromJson(jsonString);
 
 import 'dart:convert';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 List<Post> postFromJson(String str) => List<Post>.from(json.decode(str).map((x) => Post.fromJson(x)));
 
@@ -63,3 +64,16 @@ class Fields {
         "image": image,
     };
 }
+
+Future<Post?> postPost(CookieRequest request, String content, String image) async {
+    String url = 'https://restore-the-shore.up.railway.app/forum/post-post-api/';
+    dynamic response = await request.post(url, {
+      'content': content,
+      'image': image,
+    });
+
+    return Post.fromJson(response);
+
+}
+
+

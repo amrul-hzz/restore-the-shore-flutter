@@ -10,6 +10,7 @@ import 'dart:convert';
 import 'package:restore_the_shore_flutter/forum/model/post_model.dart';
 import 'package:restore_the_shore_flutter/forum/model/comment_model.dart';
 import 'package:restore_the_shore_flutter/forum/page/show_comments_page.dart';
+import 'package:restore_the_shore_flutter/forum/page/post_post_page.dart';
 
 class ForumPage extends StatefulWidget {
   const ForumPage({super.key});
@@ -45,65 +46,95 @@ class _ForumPageState extends State<ForumPage> {
               );
             }
             else {
-              return ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (_, index)=> Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  padding: const EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                    color:Colors.white,
-                    borderRadius: BorderRadius.circular(15.0),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 2.0
-                      )
-                    ]
+              return Column(
+                children: <Widget>[
+                  Expanded(
+                    child: SizedBox(
+                      height: 200.0,
+                      child: ListView.builder(
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (_, index)=> Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                          padding: const EdgeInsets.all(20.0),
+                          decoration: BoxDecoration(
+                            color:Colors.white,
+                            borderRadius: BorderRadius.circular(15.0),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black,
+                                  blurRadius: 2.0
+                              )
+                            ]
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${snapshot.data[index]["fields"]["creator_name"]}",
+                                style: const TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+
+                              const SizedBox(height: 10),
+
+                              Image.network(snapshot.data![index]["fields"]["image"]),
+
+                              Text(
+                                "${snapshot.data![index]["fields"]["content"]}",
+                                style: const TextStyle(
+                                  fontSize: 18.0,
+                                ),
+                              ),
+
+                              TextButton(
+                                style: ButtonStyle(
+                                  foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                                ),
+                                child: Text('Go to comments'),
+                                onPressed: () { 
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ShowCommentsPage(
+                                                            originalPostId:snapshot.data![index]["pk"]
+                                                            )               
+                                    ),
+                                  );
+                                },
+                              )
+
+                            ],
+
+                          )
+                        )
+                      ),
+                    )
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${snapshot.data[index]["fields"]["creator_name"]}",
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
+
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget> [
+                        FloatingActionButton(
+                          onPressed: () {
+                            Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => PostPostPage()                                
+                                    ),
+                                  );
+                          },
+                          backgroundColor: Colors.blue,
+                          child: const Icon(Icons.add),
                         ),
-                      ),
-
-                      const SizedBox(height: 10),
-
-                      Image.network(snapshot.data![index]["fields"]["image"]),
-
-                      Text(
-                        "${snapshot.data![index]["fields"]["content"]}",
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                        ),
-                      ),
-
-                      TextButton(
-                        style: ButtonStyle(
-                          foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                        ),
-                        child: Text('Go to comments'),
-                        onPressed: () { 
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ShowCommentsPage(
-                                                    originalPostId:snapshot.data![index]["pk"]
-                                                    )               
-                            ),
-                          );
-                        },
-                      )
-
-                    ],
-
+                      ]
+                    )
                   )
-                )
+                ]
               );
             }
           }
