@@ -36,7 +36,8 @@ class _MyAccountPageState extends State<MyAccountPage> {
                 } else {
                   _point = snapshot.data[0]["fields"]["user_point"];
                   _username = snapshot.data[0]["fields"]["username"];
-                  _numOfEvent = snapshot.data[0]["fields"]["events_joined"].length;
+                  _numOfEvent =
+                      snapshot.data[0]["fields"]["events_joined"].length;
 
                   return Column(
                     children: [
@@ -102,19 +103,6 @@ class _MyAccountPageState extends State<MyAccountPage> {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 24,
                                 ),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ElevatedButton(
-                                    onPressed:
-                                        () {}, //request.logout("LOGOUTURL"),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.redAccent,
-                                    ),
-                                    child: const Text("Logout"),
-                                  ),
-                                ],
                               ),
                               const SizedBox(height: 16),
                               Row(
@@ -210,6 +198,22 @@ class _MyAccountPageState extends State<MyAccountPage> {
                                   ],
                                 ),
                               ),
+                              const Spacer(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      final response = await request.logout(
+                                          "https://restore-the-shore.up.railway.app/authentication/logout/");
+                                    }, //request.logout("LOGOUTURL"),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.redAccent,
+                                    ),
+                                    child: const Text("Logout"),
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                         ),
@@ -232,6 +236,14 @@ class _MyAccountPageState extends State<MyAccountPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    const Image(
+                      image: AssetImage("assets/Logo1.png"),
+                      width: 300,
+                      height: 300,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const Text(
                       'You need to Login',
                       style: TextStyle(

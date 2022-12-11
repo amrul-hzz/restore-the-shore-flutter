@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:restore_the_shore_flutter/colorpalette.dart';
+import 'package:restore_the_shore_flutter/nav_bar.dart';
 
 class MyPostPage extends StatefulWidget {
   const MyPostPage({super.key});
@@ -28,58 +30,67 @@ class _MyPostPageState extends State<MyPostPage> {
               return const Center(child: CircularProgressIndicator());
             } else {
               if (!snapshot.hasData) {
-                return Column(
-                  children: [
-                    const Text(
-                      "You haven't post anything :(",
-                      style:
-                      TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text(
+                          "You haven't post anything :(",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context,'forum');
-                      },
-                      child: const Text("Post something"),
-                    ),
-                  ],
                 );
               } else {
                 return ListView.builder(
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (_, index) => Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 10),
-                    padding: const EdgeInsets.all(14.0),
-                    child: Card(
-                      elevation: 2,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Expanded(
-                            flex: 2,
-                            child: Text(
-                              "Test",
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (_, index)=> Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        padding: const EdgeInsets.all(20.0),
+                        decoration: BoxDecoration(
+                            color:Colors.white,
+                            borderRadius: BorderRadius.circular(15.0),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black,
+                                  blurRadius: 2.0
+                              )
+                            ]
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${snapshot.data![index]["fields"]["creator_name"]}",
                               style: const TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Text(
-                              "TEst",
+
+                            const SizedBox(height: 10),
+                            
+                            Image(image: NetworkImage("${snapshot.data![index]["fields"]["image"]}")),
+
+                            const SizedBox(height: 10),
+
+                            Text(
+                              "${snapshot.data![index]["fields"]["content"]}",
                               style: const TextStyle(
-                                fontSize: 16.0,
+                                fontSize: 18.0,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+
+                          ],
+                        )
+                    )
                 );
               }
             }
