@@ -36,7 +36,8 @@ class _MyAccountPageState extends State<MyAccountPage> {
                 } else {
                   _point = snapshot.data[0]["fields"]["user_point"];
                   _username = snapshot.data[0]["fields"]["username"];
-                  _numOfEvent = snapshot.data[0]["fields"]["events_joined"].length;
+                  _numOfEvent =
+                      snapshot.data[0]["fields"]["events_joined"].length;
 
                   return Column(
                     children: [
