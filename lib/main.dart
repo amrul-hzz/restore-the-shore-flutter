@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restore_the_shore_flutter/colorpalette.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
+import 'package:restore_the_shore_flutter/timeline/timeline.dart';
+import 'package:restore_the_shore_flutter/timeline/timeline_detail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,15 +18,17 @@ class MyApp extends StatelessWidget {
       title: 'Restore The Shore',
       initialRoute: '/',
       routes: {
-        'home' : (context) => const MyHomePage(),
-        'leaderboard' : (context) => const MyHomePage(), // Nanti ini ganti aja Page nya
-        'my-account' : (context) => const MyHomePage(),
+        'home': (context) => const MyHomePage(),
+        'leaderboard': (context) =>
+            const MyHomePage(), // Nanti ini ganti aja Page nya
+        'my-account': (context) => const MyHomePage(),
         // Nanti tambahin masing masing page nya ke sini
+        TimelineHomePage.ROUTE_NAME: (context) => const TimelineHomePage(),
       },
       theme: ThemeData(
         primarySwatch: ColorPalette.secondaryColor,
       ),
-      home: const MyHomePage(),
+      home: const TimelineHomePage(),
     );
   }
 }
@@ -42,7 +46,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
+      bottomNavigationBar:
+          const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -55,6 +60,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
-
 }
