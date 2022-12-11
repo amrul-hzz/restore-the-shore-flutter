@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:restore_the_shore_flutter/main.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 
 class LoginPage extends StatefulWidget {
@@ -30,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              const Image(image: AssetImage("assets/Logo2.png")),
+              const Image(image: AssetImage("lib/assets/Logo2.png")),
               TextFormField(
                 onSaved: (input) => _username = input,
                 decoration: InputDecoration(

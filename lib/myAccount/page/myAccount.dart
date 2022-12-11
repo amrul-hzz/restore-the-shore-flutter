@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:restore_the_shore_flutter/colorpalette.dart';
 import 'package:restore_the_shore_flutter/myAccount/model/UserProfile.dart';
+import 'package:restore_the_shore_flutter/myAccount/page/password_change.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myEvent.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myPost.dart';
@@ -73,18 +74,18 @@ class _MyAccountPageState extends State<MyAccountPage> {
                                     Image(
                                         image: _point >= 200
                                             ? const AssetImage(
-                                                'assets/badge/platinum.png')
+                                                'lib/assets/badge/platinum.png')
                                             : _point >= 150
                                                 ? const AssetImage(
-                                                    'assets/badge/gold.png')
+                                                    'lib/assets/badge/gold.png')
                                                 : _point >= 100
                                                     ? const AssetImage(
-                                                        'assets/badge/silver.png')
+                                                        'lib/assets/badge/silver.png')
                                                     : _point >= 50
                                                         ? const AssetImage(
-                                                            'assets/badge/bronze.png')
+                                                            'lib/assets/badge/bronze.png')
                                                         : const AssetImage(
-                                                            'assets/badge/no_point.png')),
+                                                            'lib/assets/badge/no_point.png')),
                                   ],
                                 ),
                               ),
@@ -205,6 +206,15 @@ class _MyAccountPageState extends State<MyAccountPage> {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () async {
+                                        Navigator.push(context,
+                                            MaterialPageRoute( builder: (context) =>
+                                              const MyPasswordFormPage()));
+                                    },
+                                    child: const Text("Change Password"),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  ElevatedButton(
+                                    onPressed: () async {
                                       final response = await request.logout(
                                           "https://restore-the-shore.up.railway.app/authentication/logout");
                                       if (!request.loggedIn) {
@@ -219,6 +229,7 @@ class _MyAccountPageState extends State<MyAccountPage> {
                                   ),
                                 ],
                               ),
+                              const SizedBox(height: 16,),
                             ],
                           ),
                         ),

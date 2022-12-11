@@ -77,10 +77,13 @@ class _MyPostPageState extends State<MyPostPage> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
+                            const Divider(),
 
                             const SizedBox(height: 10),
                             
                             Image(image: NetworkImage("${snapshot.data![index].fields.image}")),
+
+                            const Divider(),
 
                             const SizedBox(height: 10),
 
@@ -88,6 +91,15 @@ class _MyPostPageState extends State<MyPostPage> {
                               "${snapshot.data![index].fields.content}",
                               style: const TextStyle(
                                 fontSize: 18.0,
+                              ),
+                            ),
+
+                            const SizedBox(height: 12),
+
+                            Text(
+                              snapshot.data![index].fields.date.toString().substring(0, 10),
+                              style: const TextStyle(
+                                fontSize: 12.0,
                               ),
                             ),
 
