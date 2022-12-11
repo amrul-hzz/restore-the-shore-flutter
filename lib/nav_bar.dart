@@ -5,11 +5,11 @@ class NavBar extends StatefulWidget {
   const NavBar();
 
   @override
-  _NavBarState createState() => _NavBarState();
+  NavBarState createState() => NavBarState();
 }
 
-class _NavBarState extends State<NavBar> {
-  static int _selectedIndex = 0;
+class NavBarState extends State<NavBar> {
+  static int selectedIndex = 0;
 
   // Tambahin route name yang udah ditambahin di main ke sini, urutannya sesuain aja
   static List<String> listRoute = [
@@ -22,8 +22,8 @@ class _NavBarState extends State<NavBar> {
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
-      Navigator.pushReplacementNamed(context,listRoute[_selectedIndex]);
+      selectedIndex = index;
+      Navigator.pushReplacementNamed(context,listRoute[selectedIndex]);
     });
   }
 
@@ -56,7 +56,7 @@ class _NavBarState extends State<NavBar> {
           label: 'My Account',
         ),
       ],
-      currentIndex: _selectedIndex, //New
+      currentIndex: selectedIndex, //New
       onTap: _onItemTapped,
     );
   }

@@ -236,14 +236,6 @@ class _MyAccountPageState extends State<MyAccountPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Image(
-                      image: AssetImage("assets/Logo1.png"),
-                      width: 300,
-                      height: 300,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
                     const Text(
                       'You need to Login',
                       style: TextStyle(

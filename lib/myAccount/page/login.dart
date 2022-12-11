@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:restore_the_shore_flutter/main.dart';
+import 'package:restore_the_shore_flutter/nav_bar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -62,7 +63,9 @@ class _LoginPageState extends State<LoginPage> {
                         });
                     if (request.loggedIn) {
                       // Code here will run if the login succeeded.
-                        Navigator.pop(context);
+                        NavBarState.selectedIndex = 0;
+                        Navigator.pushReplacementNamed(context, 'home');
+
                     } else {
                       // Code here will run if the login failed (wrong username/password).
                       showDialog(
@@ -82,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                                   TextButton(
                                     onPressed: () {
                                       Navigator.pop(context);
+
                                     },
                                     child: const Text('Kembali'),
                                   ),
