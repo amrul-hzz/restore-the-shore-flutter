@@ -37,15 +37,7 @@ class _ForumPageState extends State<ForumPage> {
             return const Center(child: CircularProgressIndicator()); 
           }
           else{
-            if(!snapshot.hasData){
-              return Column(
-                children: const [
-                  Text("No posts yet"),
-                  SizedBox(height: 8),
-                ]
-              );
-            }
-            else {
+            
               return Column(
                 children: <Widget>[
                   Expanded(
@@ -117,7 +109,7 @@ class _ForumPageState extends State<ForumPage> {
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget> [
                         FloatingActionButton(
                           onPressed: () {
@@ -138,7 +130,7 @@ class _ForumPageState extends State<ForumPage> {
               );
             }
           }
-        }
+        
     
       )
 

@@ -3,6 +3,7 @@
 //     final comment = commentFromJson(jsonString);
 
 import 'dart:convert';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 List<Comment> commentFromJson(String str) => List<Comment>.from(json.decode(str).map((x) => Comment.fromJson(x)));
 
@@ -62,4 +63,14 @@ class Fields {
         "content": content,
         "original_post_id": originalPostId,
     };
+}
+
+Future<Comment?> postComment(CookieRequest request, String content, int originalPostId) async {
+    String url = 'https://restore-the-shore.up.railway.app/forum/post-comment-api/${originalPostId}';
+    dynamic response = await request.post(url, {
+      'content': content,
+    });
+
+    return Comment.fromJson(response);
+
 }
