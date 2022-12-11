@@ -9,6 +9,7 @@ import 'dart:convert';
 //
 import 'package:restore_the_shore_flutter/forum/model/post_model.dart';
 import 'package:restore_the_shore_flutter/forum/model/comment_model.dart';
+import 'package:restore_the_shore_flutter/forum/page/show_comments_page.dart';
 
 class ForumPage extends StatefulWidget {
   const ForumPage({super.key});
@@ -20,28 +21,6 @@ class ForumPage extends StatefulWidget {
 }
 
 class _ForumPageState extends State<ForumPage> {
-  Future<List<Post>> fetchPosts() async{
-    var url = Uri.parse('https://restore-the-shore.up.railway.app/forum/json/');
-    var response = await http.get(
-      url,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    );
-
-    var data = jsonDecode(utf8.decode(response.bodyBytes));
-
-    List<Post> listPosts = [];
-    for (var d in data){
-      if (d != null){
-        listPosts.add(Post.fromJson(d));
-      }
-    }
-    
-    return listPosts;
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +30,7 @@ class _ForumPageState extends State<ForumPage> {
       bottomNavigationBar: const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
       body: request.loggedIn
       ? FutureBuilder(
-        future: fetchPosts(),
+        future: request.get('https://restore-the-shore.up.railway.app/forum/json/'),
         builder: (context, AsyncSnapshot snapshot) {
           if(snapshot.data == null){
             return const Center(child: CircularProgressIndicator()); 
@@ -86,7 +65,7 @@ class _ForumPageState extends State<ForumPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${snapshot.data![index].fields.creatorName}",
+                        "${snapshot.data[index]["fields"]["creator_name"]}",
                         style: const TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
@@ -95,14 +74,34 @@ class _ForumPageState extends State<ForumPage> {
 
                       const SizedBox(height: 10),
 
+                      Image.network(snapshot.data![index]["fields"]["image"]),
+
                       Text(
-                        "${snapshot.data![index].fields.content}",
+                        "${snapshot.data![index]["fields"]["content"]}",
                         style: const TextStyle(
                           fontSize: 18.0,
                         ),
                       ),
-                      
+
+                      TextButton(
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
+                        ),
+                        child: Text('Go to comments'),
+                        onPressed: () { 
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ShowCommentsPage(
+                                                    originalPostId:snapshot.data![index]["pk"]
+                                                    )               
+                            ),
+                          );
+                        },
+                      )
+
                     ],
+
                   )
                 )
               );

@@ -35,21 +35,21 @@ class Comment {
 class Fields {
     Fields({
         required this.creator,
-        required this.creatorName,
+        required this.creator_name,
         required this.date,
         required this.content,
         required this.originalPostId,
     });
 
     int creator;
-    String creatorName;
+    String creator_name;
     DateTime date;
     String content;
     int originalPostId;
 
     factory Fields.fromJson(Map<String, dynamic> json) => Fields(
         creator: json["creator"],
-        creatorName: json["creator_name"],
+        creator_name: json["creator_name"],
         date: DateTime.parse(json["date"]),
         content: json["content"],
         originalPostId: json["original_post_id"],
@@ -57,7 +57,7 @@ class Fields {
 
     Map<String, dynamic> toJson() => {
         "creator": creator,
-        "creator_name": creatorName,
+        "creator_name": creator_name,
         "date": date.toIso8601String(),
         "content": content,
         "original_post_id": originalPostId,
