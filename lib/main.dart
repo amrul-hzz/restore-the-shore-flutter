@@ -8,6 +8,7 @@ import 'package:restore_the_shore_flutter/login.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 import 'package:restore_the_shore_flutter/forum/page/forum_page.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:restore_the_shore_flutter/timeline/timeline.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
           'leaderboard' : (context) => const LeaderboardPage(), // Nanti ini ganti aja Page nya
           'my-account' : (context) => const MyAccountPage(),
           'login': (context) => const LoginPage(),
+          TimelineHomePage.ROUTE_NAME: (context) => const TimelineHomePage(),
           // Nanti tambahin masing masing page nya ke sini
         },
         theme: ThemeData(
@@ -58,7 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
+      bottomNavigationBar:
+          const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
