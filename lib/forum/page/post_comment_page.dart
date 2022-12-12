@@ -9,10 +9,12 @@ import 'dart:convert';
 import 'package:restore_the_shore_flutter/forum/model/post_model.dart';
 import 'package:restore_the_shore_flutter/forum/model/comment_model.dart';
 import 'package:restore_the_shore_flutter/forum/page/forum_page.dart';
+import 'package:restore_the_shore_flutter/forum/page/show_comments_page.dart';
+
 
 class PostCommentPage extends StatefulWidget {
-  PostCommentPage({super.key, this.originalPostId});
-  var originalPostId;
+  PostCommentPage({super.key, this.original_post_id});
+  var original_post_id;
 
   @override
   State<PostCommentPage> createState() => _PostCommentPageState();
@@ -77,7 +79,7 @@ class _PostCommentPageState extends State<PostCommentPage> {
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      postComment(request, _content, widget.originalPostId).then(
+                      postComment(request, _content, widget.original_post_id).then(
                         (value) {
                           if (!mounted) return;
                           if (value == null) {
@@ -87,7 +89,14 @@ class _PostCommentPageState extends State<PostCommentPage> {
                             ));
                           } 
                           else {
-                            Navigator.pop(context);
+                            Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ShowCommentsPage(
+                                                            original_post_id:widget.original_post_id
+                                                            )               
+                                    ),
+                                  );
                           }
                         },
                       );

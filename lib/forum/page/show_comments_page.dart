@@ -13,8 +13,8 @@ import 'package:restore_the_shore_flutter/forum/page/post_comment_page.dart';
 
 
 class ShowCommentsPage extends StatefulWidget {
-  ShowCommentsPage({super.key, this.originalPostId});
-  var originalPostId;
+  ShowCommentsPage({super.key, this.original_post_id});
+  var original_post_id;
 
   @override
   State<ShowCommentsPage> createState() => _ShowCommentsPageState();
@@ -31,7 +31,7 @@ class _ShowCommentsPageState extends State<ShowCommentsPage> {
     return Scaffold(
        bottomNavigationBar: const NavBar(),
        body: FutureBuilder(
-        future: request.get('https://restore-the-shore.up.railway.app/forum/json-comments/${widget.originalPostId}'),
+        future: request.get('https://restore-the-shore.up.railway.app/forum/json-comments/${widget.original_post_id}'),
         builder: (context, AsyncSnapshot snapshot) {
           if(snapshot.data == null) {
             return const Center(child: CircularProgressIndicator());
@@ -93,7 +93,7 @@ class _ShowCommentsPageState extends State<ShowCommentsPage> {
                             Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => PostCommentPage(originalPostId:widget.originalPostId)                                
+                                        builder: (context) => PostCommentPage(original_post_id:widget.original_post_id)                                
                                     ),
                                   );
                           },
