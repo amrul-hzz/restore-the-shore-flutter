@@ -5,6 +5,7 @@ import 'dart:convert';
 import '../models/timeline_model.dart';
 
 Future<List<Timeline>> fetchTimeline() async {
+  var name = "timeline";
   var url =
       Uri.parse('https://restore-the-shore.up.railway.app/create-event/json/');
 
@@ -23,11 +24,38 @@ Future<List<Timeline>> fetchTimeline() async {
 
   List<Timeline> listTimeline = [];
   for (var d in data) {
-    print(d);
     if (d != null) {
       listTimeline.add(Timeline.fromJson(d));
     }
   }
 
   return listTimeline;
+}
+
+Future<List<Timeline>> fetchSearch(String alamat) async {
+  var name = "search";
+  var url =
+      Uri.parse('https://restore-the-shore.up.railway.app/create-event/json/');
+  var response = await http.get(
+    url,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      'Content-Type': 'application/json',
+    },
+  );
+
+  // decode response to json
+  var data = json.decode(response.body);
+
+  // convert json to list of food rec model
+  List<Timeline> listSearch = [];
+  for (var i in data) {
+    if (i != null) {
+      if (i["fields"]["alamatPantai"].toLowerCase().contains(alamat)) {
+        listSearch.add(Timeline.fromJson(i));
+      }
+    }
+  }
+
+  return listSearch;
 }
