@@ -23,9 +23,9 @@ class _QuoteWidgetState extends State<QuoteWidget> {
     this.request = request;
   }
 
-  void searchQuote(String username) {
-    setState(() {
-      var respStr = postQuote(request, username);
+  void searchQuote(String username) async {
+    setState(() async {
+      var respStr = await postQuote(request, username);
 
       if (respStr.toString() == "OK") {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

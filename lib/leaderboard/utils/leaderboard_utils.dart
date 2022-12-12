@@ -74,7 +74,7 @@ Future<List<Quote>> fetchQuote(request) async {
   return listQuote;
 }
 
-Future<dynamic> postQuote(CookieRequest request, String newQuote) async {
+Future<String> postQuote(CookieRequest request, String newQuote) async {
   // TODO: Ganti ke url railway
   // var url = 'http://127.0.0.1:8000/group/$group_name/json-flutter/';
   var url = 'https://restore-the-shore.up.railway.app/leaderboard/add-quote-mobile/';
@@ -83,7 +83,7 @@ Future<dynamic> postQuote(CookieRequest request, String newQuote) async {
     "username": request.jsonData['username'],
     "quote": newQuote
   });
-  
+
   print(response); // dirty debug
   return response["message"];
 }
