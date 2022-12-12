@@ -1,4 +1,0 @@
-#Mon Dec 12 20:02:41 ICT 2022
-base.0=C\:\\Users\\user\\Desktop\\PBP\\restore-the-shore-flutter\\build\\app\\intermediates\\dex\\profile\\mergeDexProfile\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
