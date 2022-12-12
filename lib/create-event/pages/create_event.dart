@@ -277,33 +277,33 @@ class _CreateEventPageState extends State<CreateEventPage> {
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
                 onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    final response = await request.post(
-                        'https://restore-the-shore.up.railway.app/create-event/add/',
-                        {
-                          'namaEvent': _namaEvent,
-                          'namaPantai': _namaPantai,
-                          'alamatPantai': _alamatPantai,
-                          'jumlahPartisipan': _jumlahPartisipan.toString(),
-                          'fotoPantai': _fotoPantai,
-                          'deskripsi': _deskripsi,
-                          'tanggalMulai': tanggalMulai.toString(),
-                          'tanggalAkhir': tanggalAkhir.toString(),
-                        }).then((value) => print("berhasil"));
-                  }
-                  //print("berhasil");
                   // if (_formKey.currentState!.validate()) {
-                  //   createEvent(
-                  //       request,
-                  //       _namaEvent,
-                  //       _namaPantai,
-                  //       _alamatPantai,
-                  //       _jumlahPartisipan,
-                  //       _fotoPantai,
-                  //       _deskripsi,
-                  //       tanggalMulai!,
-                  //       tanggalAkhir!);
+                  //   final response = await request.post(
+                  //       'https://restore-the-shore.up.railway.app/create-event/add/',
+                  //       {
+                  //         'namaEvent': _namaEvent,
+                  //         'namaPantai': _namaPantai,
+                  //         'alamatPantai': _alamatPantai,
+                  //         'jumlahPartisipan': _jumlahPartisipan.toString(),
+                  //         'fotoPantai': _fotoPantai,
+                  //         'deskripsi': _deskripsi,
+                  //         'tanggalMulai': tanggalMulai.toString(),
+                  //         'tanggalAkhir': tanggalAkhir.toString(),
+                  //       }).then((value) => print("berhasil"));
                   // }
+                  //print("berhasil");
+                  if (_formKey.currentState!.validate()) {
+                    createEvent(
+                        request,
+                        _namaEvent,
+                        _namaPantai,
+                        _alamatPantai,
+                        _jumlahPartisipan,
+                        _fotoPantai,
+                        _deskripsi,
+                        tanggalMulai!,
+                        tanggalAkhir!);
+                  }
 
                   //print(response.statusCode);
                   // createEvent(

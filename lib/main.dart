@@ -6,10 +6,11 @@ import 'package:restore_the_shore_flutter/myAccount/page/myAccount.dart';
 import 'package:restore_the_shore_flutter/create-event/pages/create_event.dart';
 import 'package:restore_the_shore_flutter/create-event/pages/event_data.dart';
 import 'package:restore_the_shore_flutter/create-event/pages/event_detail.dart';
-import 'package:restore_the_shore_flutter/myAccount/page/login.dart';
+import 'package:restore_the_shore_flutter/login.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 import 'package:restore_the_shore_flutter/forum/page/forum_page.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:restore_the_shore_flutter/timeline/timeline.dart';
 
 void main() {
   runApp(const MyApp());

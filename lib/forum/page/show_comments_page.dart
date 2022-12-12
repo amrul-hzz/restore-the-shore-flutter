@@ -31,7 +31,7 @@ class _ShowCommentsPageState extends State<ShowCommentsPage> {
     return Scaffold(
        bottomNavigationBar: const NavBar(),
        body: FutureBuilder(
-        future: request.get('https://restore-the-shore.up.railway.app/forum/json-comments/${widget.original_post_id}'),
+        future: fetchComments(request, widget.original_post_id),
         builder: (context, AsyncSnapshot snapshot) {
           if(snapshot.data == null) {
             return const Center(child: CircularProgressIndicator());
@@ -63,7 +63,7 @@ class _ShowCommentsPageState extends State<ShowCommentsPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${snapshot.data[index]["fields"]["creator_name"]}",
+                              "${snapshot.data[index].fields.creator_name}",
                               style: const TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class _ShowCommentsPageState extends State<ShowCommentsPage> {
                             ),
 
                             Text(
-                              "${snapshot.data![index]["fields"]["content"]}",
+                              "${snapshot.data![index].fields.content}",
                               style: const TextStyle(
                                 fontSize: 18.0,
                               ),
@@ -86,9 +86,9 @@ class _ShowCommentsPageState extends State<ShowCommentsPage> {
                 Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget> [
-                        FloatingActionButton(
+                        ElevatedButton(
                           onPressed: () {
                             Navigator.push(
                                     context,
@@ -97,7 +97,7 @@ class _ShowCommentsPageState extends State<ShowCommentsPage> {
                                     ),
                                   );
                           },
-                          backgroundColor: Colors.blue,
+                         
                           child: const Icon(Icons.add),
                         ),
                       ]

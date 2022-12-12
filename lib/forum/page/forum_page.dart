@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 //
+import 'package:restore_the_shore_flutter/login.dart';
 import 'package:restore_the_shore_flutter/forum/model/post_model.dart';
 import 'package:restore_the_shore_flutter/forum/model/comment_model.dart';
 import 'package:restore_the_shore_flutter/forum/page/show_comments_page.dart';
@@ -31,7 +32,7 @@ class _ForumPageState extends State<ForumPage> {
       bottomNavigationBar: const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
       body: request.loggedIn
       ? FutureBuilder(
-        future: request.get('https://restore-the-shore.up.railway.app/forum/json/'),
+        future: fetchPosts(request),
         builder: (context, AsyncSnapshot snapshot) {
           if(snapshot.data == null){
             return const Center(child: CircularProgressIndicator()); 
@@ -63,7 +64,7 @@ class _ForumPageState extends State<ForumPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "${snapshot.data[index]["fields"]["creator_name"]}",
+                                "${snapshot.data[index].fields.creator_name}",
                                 style: const TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
@@ -72,10 +73,10 @@ class _ForumPageState extends State<ForumPage> {
 
                               const SizedBox(height: 10),
 
-                              Image.network(snapshot.data![index]["fields"]["image"]),
+                              Image.network(snapshot.data![index].fields.image),
 
                               Text(
-                                "${snapshot.data![index]["fields"]["content"]}",
+                                "${snapshot.data![index].fields.content}",
                                 style: const TextStyle(
                                   fontSize: 18.0,
                                 ),
@@ -91,7 +92,7 @@ class _ForumPageState extends State<ForumPage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => ShowCommentsPage(
-                                                            original_post_id:snapshot.data![index]["pk"]
+                                                            original_post_id:snapshot.data![index].pk
                                                             )               
                                     ),
                                   );
@@ -107,20 +108,20 @@ class _ForumPageState extends State<ForumPage> {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget> [
-                        FloatingActionButton(
+                        ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pop(context);
+                            Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PostPostPage()                                
                                     ),
                                   );
                           },
-                          backgroundColor: Colors.blue,
                           child: const Icon(Icons.add),
                         ),
                       ]
@@ -165,7 +166,10 @@ class _ForumPageState extends State<ForumPage> {
 
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, 'login');
+                  Navigator.push( context, MaterialPageRoute(
+                                  builder: (context) => LoginPage()                                
+                                  ),
+                                );
                 },
                 child: const Text("Login"),
               ),
