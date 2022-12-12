@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           'leaderboard' : (context) => const LeaderboardPage(), // Nanti ini ganti aja Page nya
           'my-account' : (context) => const MyAccountPage(),
           'login': (context) => const LoginPage(),
-          TimelineHomePage.ROUTE_NAME: (context) => const TimelineHomePage(),
+          'timeline': (context) => const TimelineHomePage(),
           // Nanti tambahin masing masing page nya ke sini
         },
         theme: ThemeData(

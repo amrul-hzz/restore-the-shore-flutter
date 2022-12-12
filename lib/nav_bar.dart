@@ -15,6 +15,7 @@ class NavBarState extends State<NavBar> {
   static List<String> listRoute = [
     'home',
     'forum',
+    'timeline',
     'create-event',
     'leaderboard',
     'my-account',
@@ -42,6 +43,10 @@ class NavBarState extends State<NavBar> {
         BottomNavigationBarItem(
           icon: Icon(Icons.chat), // [PROBLEM] ntah kenapa icon di navbar jd putih
           label:'Forum',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.timeline),
+          label: 'Timeline',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.add),
