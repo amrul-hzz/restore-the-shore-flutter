@@ -281,14 +281,16 @@ class _CreateEventPageState extends State<CreateEventPage> {
                     final response = await request.post(
                         'https://restore-the-shore.up.railway.app/create-event/add/',
                         {
-                          'namaEvent': _namaEvent,
-                          'namaPantai': _namaPantai,
-                          'alamatPantai': _alamatPantai,
-                          'jumlahPartisipan': _jumlahPartisipan.toString(),
-                          'fotoPantai': _fotoPantai,
-                          'deskripsi': _deskripsi,
-                          'tanggalMulai': tanggalMulai.toString(),
-                          'tanggalAkhir': tanggalAkhir.toString(),
+                          "namaEvent": _namaEvent,
+                          "namaPantai": _namaPantai,
+                          "alamatPantai": _alamatPantai,
+                          "jumlahPartisipan": _jumlahPartisipan.toString(),
+                          "fotoPantai": _fotoPantai,
+                          "deskripsi": _deskripsi,
+                          "tanggalMulai":
+                              "${tanggalMulai!.year.toString().padLeft(4, '0')}-${tanggalMulai!.month.toString().padLeft(2, '0')}-${tanggalMulai!.day.toString().padLeft(2, '0')}",
+                          "tanggalAkhir":
+                              "${tanggalAkhir!.year.toString().padLeft(4, '0')}-${tanggalAkhir!.month.toString().padLeft(2, '0')}-${tanggalAkhir!.day.toString().padLeft(2, '0')}",
                         });
                   }
                   //print("berhasil");
@@ -307,6 +309,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
 
                   //print(response.statusCode);
                   // createEvent(
+                  //     request,
                   //     _namaEvent,
                   //     _namaPantai,
                   //     _alamatPantai,
@@ -315,19 +318,22 @@ class _CreateEventPageState extends State<CreateEventPage> {
                   //     _deskripsi,
                   //     tanggalMulai!,
                   //     tanggalAkhir!);
+
                   // if (_formKey.currentState!.validate()) {
-                  //   final response = http.post(
+                  //   final response = await http.post(
                   //     Uri.parse(
                   //         'https://restore-the-shore.up.railway.app/create-event/add/'),
-                  //     body: jsonEncode(<String, String>{
+                  //     body: jsonEncode(<String, dynamic>{
                   //       "namaEvent": _namaEvent,
                   //       "namaPantai": _namaPantai,
                   //       "alamatPantai": _alamatPantai,
-                  //       "jumlahPartisipan": _jumlahPartisipan.toString(),
+                  //       "jumlahPartisipan": _jumlahPartisipan,
                   //       "fotoPantai": _fotoPantai,
                   //       "deskripsi": _deskripsi,
-                  //       "tanggalMulai": tanggalMulai.toString(),
-                  //       "tanggalAkhir": tanggalAkhir.toString(),
+                  //       "tanggalMulai":
+                  //           "${tanggalMulai!.year.toString().padLeft(4, '0')}-${tanggalMulai!.month.toString().padLeft(2, '0')}-${tanggalMulai!.day.toString().padLeft(2, '0')}",
+                  //       "tanggalAkhir":
+                  //           "${tanggalAkhir!.year.toString().padLeft(4, '0')}-${tanggalAkhir!.month.toString().padLeft(2, '0')}-${tanggalAkhir!.day.toString().padLeft(2, '0')}",
                   //     }),
                   //   );
 

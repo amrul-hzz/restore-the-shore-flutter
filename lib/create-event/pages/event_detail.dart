@@ -180,7 +180,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                 Navigator.pop(context);
                 Navigator.pushReplacementNamed(context, 'event-data');
                 var pk = widget.datapk;
-                final response = await request.post(
+                await request.post(
                     "https://restore-the-shore.up.railway.app/create-event/delete-event/$pk/",
                     {});
               },
