@@ -217,6 +217,36 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Container(
               child: Text(
+                'Send a Feedback!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Color.fromARGB(255, 35, 32, 115),
+                ),
+              ),
+              margin: const EdgeInsets.only(top: 15.0),
+            ),
+            Container(
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Type here...",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                ),
+              ),
+              margin: const EdgeInsets.all(10.0),
+            ),
+            Container(
+              child: FloatingActionButton.extended(
+                onPressed: () {/** */}, 
+                elevation: 0,
+                backgroundColor: Color.fromARGB(255, 35, 32, 115),
+                label: const Text("Submit"),
+              ),                  
+            ),
+            Container(
+              child: Text(
                 '© 2022 - Restore The Shore - All rights reserved',
                 textAlign: TextAlign.center,
                 style: TextStyle(
