@@ -39,21 +39,21 @@ class Fields {
         required this.creator_name,
         required this.date,
         required this.content,
-        required this.originalPostId,
+        required this.original_post_id,
     });
 
     int creator;
     String creator_name;
     DateTime date;
     String content;
-    int originalPostId;
+    int original_post_id;
 
     factory Fields.fromJson(Map<String, dynamic> json) => Fields(
         creator: json["creator"],
         creator_name: json["creator_name"],
         date: DateTime.parse(json["date"]),
         content: json["content"],
-        originalPostId: json["original_post_id"],
+        original_post_id: json["original_post_id"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -61,12 +61,12 @@ class Fields {
         "creator_name": creator_name,
         "date": date.toIso8601String(),
         "content": content,
-        "original_post_id": originalPostId,
+        "original_post_id": original_post_id,
     };
 }
 
-Future<Comment?> postComment(CookieRequest request, String content, int originalPostId) async {
-    String url = 'https://restore-the-shore.up.railway.app/forum/post-comment-api/${originalPostId}';
+Future<Comment?> postComment(CookieRequest request, String content, int original_post_id) async {
+    String url = 'https://restore-the-shore.up.railway.app/forum/post-comment-api/${original_post_id}/';
     dynamic response = await request.post(url, {
       'content': content,
     });

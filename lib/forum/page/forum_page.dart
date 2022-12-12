@@ -91,7 +91,7 @@ class _ForumPageState extends State<ForumPage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => ShowCommentsPage(
-                                                            originalPostId:snapshot.data![index]["pk"]
+                                                            original_post_id:snapshot.data![index]["pk"]
                                                             )               
                                     ),
                                   );
