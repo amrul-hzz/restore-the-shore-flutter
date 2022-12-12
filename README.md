@@ -2,6 +2,8 @@
 ![AppCenterRelease](https://github.com/amrul-hzz/restore-the-shore-flutter/actions/workflows/release-appcenter.yaml/badge.svg)
 [![Build status](https://build.appcenter.ms/v0.1/apps/8c521d2e-41ce-435c-9b58-9145b07171d8/branches/main/badge)](https://appcenter.ms)
 
+# Link Download [https://install.appcenter.ms/orgs/restore-the-shore/apps/restore-the-shore/distribution_groups/public]
+
 # Kelompok C03 PBP Gasal Fasilkom UI 2022/2023
 Repository ini digunakan untuk Proyek Akhir Semester pada mata kuliah PBP semester gasal Fasilkom UI 2022/2023.
 
