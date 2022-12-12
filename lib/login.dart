@@ -23,11 +23,12 @@ class _LoginPageState extends State<LoginPage> {
     final request = context.watch<CookieRequest>();
     // The rest of your widgets are down below
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Login'),
-        ),
-        bottomNavigationBar: const NavBar(),
-        body: Form(
+      appBar: AppBar(
+        title: const Text('Login'),
+      ),
+      bottomNavigationBar: const NavBar(),
+      body: ListView(children: <Widget>[
+        Form(
           key: _loginFormKey,
           child: Container(
             padding: const EdgeInsets.all(20.0),
@@ -113,6 +114,8 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-        ));
+        )
+      ]),
+    );
   }
 }
