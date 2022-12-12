@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:restore_the_shore_flutter/main.dart';
+import 'package:restore_the_shore_flutter/nav_bar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -21,96 +21,86 @@ class _LoginPageState extends State<LoginPage> {
     // The rest of your widgets are down below
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Login'),
+        title: const Text('Login'),
       ),
       body: Form(
         key: _loginFormKey,
-        child: Column(
-          children: [
-            TextFormField(
-              onSaved: (input) => _username = input,
-              decoration: InputDecoration(labelText: 'Username'),
-            ),
-            TextFormField(
-              onSaved: (input) => _password = input,
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                if (_loginFormKey.currentState!.validate()) {
-                  _loginFormKey.currentState!.save();
-                  final response = await request.login(
-                      "https://restore-the-shore.up.railway.app/authentication/login",
-                      {
-                        'username': _username,
-                        'password': _password,
-                      });
-                  if (request.loggedIn) {
-                    // Code here will run if the login succeeded.
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          elevation: 15,
-                          child: Container(
-                            child: ListView(
-                              padding: const EdgeInsets.all(20.0),
-                              shrinkWrap: true,
-                              children: <Widget>[
-                                Center(child: const Text('Berhasil')),
-                                SizedBox(height: 20),
-                                Text('Judul : $_username'),
-                                Text('Nominal : $_password'),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text('Kembali'),
-                                ),
-                              ],
+        child: Container(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              const Image(image: AssetImage("lib/assets/Logo2.png")),
+              TextFormField(
+                onSaved: (input) => _username = input,
+                decoration: InputDecoration(
+                    labelText: 'Username',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                onSaved: (input) => _password = input,
+                decoration: InputDecoration(labelText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                ),
+                obscureText: true,
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  if (_loginFormKey.currentState!.validate()) {
+                    _loginFormKey.currentState!.save();
+                    final response = await request.login(
+                        "https://restore-the-shore.up.railway.app/authentication/login",
+                        {
+                          'username': _username,
+                          'password': _password,
+                        });
+                    if (request.loggedIn) {
+                      // Code here will run if the login succeeded.
+                        NavBarState.selectedIndex = 0;
+                        Navigator.pushReplacementNamed(context, 'home');
+
+                    } else {
+                      // Code here will run if the login failed (wrong username/password).
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                          ),
-                        );
-                      },
-                    );
-                  } else {
-                    // Code here will run if the login failed (wrong username/password).
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          elevation: 15,
-                          child: Container(
-                            child: ListView(
-                              padding: const EdgeInsets.all(20.0),
-                              shrinkWrap: true,
-                              children: <Widget>[
-                                Center(child: const Text('Tidak Berhasil')),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text('Kembali'),
-                                ),
-                              ],
+                            elevation: 15,
+                            child: Container(
+                              child: ListView(
+                                padding: const EdgeInsets.all(20.0),
+                                shrinkWrap: true,
+                                children: <Widget>[
+                                  const Center(child: Text('Tidak Berhasil')),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+
+                                    },
+                                    child: const Text('Kembali'),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    );
+                          );
+                        },
+                      );
+                    }
                   }
-                }
-              },
-              child: Text('Submit'),
-            ),
-          ],
+                },
+                child: const Text('Submit'),
+              ),
+            ],
+          ),
         ),
       ),
     );

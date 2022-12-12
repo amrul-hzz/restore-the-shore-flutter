@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:restore_the_shore_flutter/colorpalette.dart';
-import 'package:restore_the_shore_flutter/create-event/create_event.dart';
-import 'package:restore_the_shore_flutter/leaderboard/leaderboard.dart';
-import 'package:restore_the_shore_flutter/nav_bar.dart';
-import 'package:restore_the_shore_flutter/login.dart';
 import 'package:provider/provider.dart';
+import 'package:restore_the_shore_flutter/colorpalette.dart';
+import 'package:restore_the_shore_flutter/leaderboard/leaderboard.dart';
+import 'package:restore_the_shore_flutter/myAccount/page/myAccount.dart';
+import 'package:restore_the_shore_flutter/create-event/create_event.dart';
+import 'package:restore_the_shore_flutter/login.dart';
+import 'package:restore_the_shore_flutter/nav_bar.dart';
+import 'package:restore_the_shore_flutter/forum/page/forum_page.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:restore_the_shore_flutter/timeline/timeline.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,26 +22,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider(
         create: (_) {
-          CookieRequest request = CookieRequest();
-          return request;
+      CookieRequest request = CookieRequest();
+      return request;
+    },
+      child : MaterialApp(
+        title: 'Restore The Shore',
+        initialRoute: '/',
+        routes: {
+          'home' : (context) => const MyHomePage(),
+          'forum': (context) => const ForumPage(),
+          'create-event': (context) => const CreateEventPage(),
+          'leaderboard' : (context) => const LeaderboardPage(), // Nanti ini ganti aja Page nya
+          'my-account' : (context) => const MyAccountPage(),
+          'login': (context) => const LoginPage(),
+          'timeline': (context) => const TimelineHomePage(),
+          // Nanti tambahin masing masing page nya ke sini
         },
-        child: MaterialApp(
-          title: 'Restore The Shore',
-          initialRoute: '/',
-          routes: {
-            'home': (context) => const MyHomePage(),
-            'leaderboard': (context) =>
-                const LeaderboardPage(), // Nanti ini ganti aja Page nya
-            'my-account': (context) => const MyHomePage(),
-            'create-event': (context) => const CreateEventPage(),
-            'login': (context) => const LoginPage(),
-            // Nanti tambahin masing masing page nya ke sini
-          },
-          theme: ThemeData(
-            primarySwatch: ColorPalette.secondaryColor,
-          ),
-          home: const MyHomePage(),
-        ));
+        theme: ThemeData(
+          primarySwatch: ColorPalette.secondaryColor,
+        ),
+        home: const MyHomePage(),
+      )
+    );
   }
 }
 
