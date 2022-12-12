@@ -93,7 +93,7 @@ class _EventDataPageState extends State<EventDataPage> {
                                       child: const Text('More Info',
                                           style:
                                               TextStyle(color: Colors.white)),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ],
