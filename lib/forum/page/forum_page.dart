@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 //
+import 'package:restore_the_shore_flutter/login.dart';
 import 'package:restore_the_shore_flutter/forum/model/post_model.dart';
 import 'package:restore_the_shore_flutter/forum/model/comment_model.dart';
 import 'package:restore_the_shore_flutter/forum/page/show_comments_page.dart';
@@ -165,7 +166,10 @@ class _ForumPageState extends State<ForumPage> {
 
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, 'login');
+                  Navigator.push( context, MaterialPageRoute(
+                                  builder: (context) => LoginPage()                                
+                                  ),
+                                );
                 },
                 child: const Text("Login"),
               ),
