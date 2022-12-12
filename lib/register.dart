@@ -3,6 +3,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:restore_the_shore_flutter/main.dart';
+import 'dart:developer';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -52,11 +53,11 @@ class _RegisterPageState extends State<RegisterPage> {
             ElevatedButton(
               child: Text('Submit'),
               onPressed: () async {
-                if (_registerFormKey.currentState!.validate()) {
-                  _registerFormKey.currentState!.save();
+                //if (_registerFormKey.currentState!.validate()) {
+                  //_registerFormKey.currentState!.save();
 
                   final response = await request.post(
-                      "https://restore-the-shore.up.railway.app/authentication/register",
+                      "https://restore-the-shore.up.railway.app/authentication/register/",
                       {
                         'username': _username,
                         'password': _password,
@@ -64,65 +65,42 @@ class _RegisterPageState extends State<RegisterPage> {
                       }
                   );
 
-                  if (response.status == 200) {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Dialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        elevation: 15,
+                        child: Container(
+                          child: ListView(
+                            padding: const EdgeInsets.all(20.0),
+                            shrinkWrap: true,
+                            children: <Widget>[
+                              Center(child: request.loggedIn 
+                                ? const Text('Berhasil Mendaftarkan Akun')
+                                : Text('${response.message}')
+                              ),
+
+                              SizedBox(height: 20),
+
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Kembali'),
+                              ),
+                            ],
                           ),
-                          elevation: 15,
-                          child: Container(
-                            child: ListView(
-                              padding: const EdgeInsets.all(20.0),
-                              shrinkWrap: true,
-                              children: <Widget>[
-                                Center(child: const Text('Berhasil Mendaftarkan Akun')),
-                                SizedBox(height: 20),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text('Kembali'),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  } 
-                  else {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          elevation: 15,
-                          child: Container(
-                            child: ListView(
-                              padding: const EdgeInsets.all(20.0),
-                              shrinkWrap: true,
-                              children: <Widget>[
-                                Center(child: Text('${response.message}')),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text('Kembali'),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  } 
+                        ),
+                      );
+                    },
+                  );
+                
+                  
                 }
-              }, 
+               
             ),
           ],
         ),

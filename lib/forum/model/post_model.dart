@@ -65,6 +65,20 @@ class Fields {
     };
 }
 
+Future<List<Post>> fetchPosts(request) async {
+  var url = 'https://restore-the-shore.up.railway.app/forum/json/';
+  var response = await request.get(url);
+  var data = response;
+
+  List<Post> listPosts = [];
+  for (var d in data) {
+    if (d != null) {
+      listPosts.add(Post.fromJson(d));
+    }
+  }
+  return listPosts;
+}
+
 Future<Post?> postPost(CookieRequest request, String content, String image) async {
     String url = 'https://restore-the-shore.up.railway.app/forum/post-post-api/';
     dynamic response = await request.post(url, {

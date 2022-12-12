@@ -65,6 +65,20 @@ class Fields {
     };
 }
 
+Future<List<Comment>> fetchComments(request, original_post_id) async {
+  var url = 'https://restore-the-shore.up.railway.app/forum/json-comments/${original_post_id}/';
+  var response = await request.get(url);
+  var data = response;
+
+  List<Comment> listComments = [];
+  for (var d in data) {
+    if (d != null) {
+      listComments.add(Comment.fromJson(d));
+    }
+  }
+  return listComments;
+}
+
 Future<Comment?> postComment(CookieRequest request, String content, int original_post_id) async {
     String url = 'https://restore-the-shore.up.railway.app/forum/post-comment-api/${original_post_id}/';
     dynamic response = await request.post(url, {

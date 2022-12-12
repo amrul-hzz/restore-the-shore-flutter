@@ -32,7 +32,7 @@ class _ForumPageState extends State<ForumPage> {
       bottomNavigationBar: const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
       body: request.loggedIn
       ? FutureBuilder(
-        future: request.get('https://restore-the-shore.up.railway.app/forum/json/'),
+        future: fetchPosts(request),
         builder: (context, AsyncSnapshot snapshot) {
           if(snapshot.data == null){
             return const Center(child: CircularProgressIndicator()); 
@@ -64,7 +64,7 @@ class _ForumPageState extends State<ForumPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "${snapshot.data[index]["fields"]["creator_name"]}",
+                                "${snapshot.data[index].fields.creator_name}",
                                 style: const TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
@@ -73,10 +73,10 @@ class _ForumPageState extends State<ForumPage> {
 
                               const SizedBox(height: 10),
 
-                              Image.network(snapshot.data![index]["fields"]["image"]),
+                              Image.network(snapshot.data![index].fields.image),
 
                               Text(
-                                "${snapshot.data![index]["fields"]["content"]}",
+                                "${snapshot.data![index].fields.content}",
                                 style: const TextStyle(
                                   fontSize: 18.0,
                                 ),
@@ -92,7 +92,7 @@ class _ForumPageState extends State<ForumPage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => ShowCommentsPage(
-                                                            original_post_id:snapshot.data![index]["pk"]
+                                                            original_post_id:snapshot.data![index].pk
                                                             )               
                                     ),
                                   );

@@ -89,7 +89,8 @@ class _PostCommentPageState extends State<PostCommentPage> {
                             ));
                           } 
                           else {
-                            Navigator.push(
+                            Navigator.pop(context);
+                            Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => ShowCommentsPage(
