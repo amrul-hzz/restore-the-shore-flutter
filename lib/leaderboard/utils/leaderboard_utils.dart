@@ -83,6 +83,6 @@ Future<dynamic> postQuote(CookieRequest request, String newQuote) async {
     "quote": newQuote
   });
   print(response); // dirty debug
-  return response.status;
+  return response["message"];
 }
 
