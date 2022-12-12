@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+
 import 'package:restore_the_shore_flutter/colorpalette.dart';
+import 'package:restore_the_shore_flutter/myAccount/model/UserProfile.dart';
+import 'package:restore_the_shore_flutter/myAccount/page/password_change.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myEvent.dart';
 import 'package:restore_the_shore_flutter/myAccount/page/myPost.dart';
@@ -28,16 +31,15 @@ class _MyAccountPageState extends State<MyAccountPage> {
       bottomNavigationBar: const NavBar(),
       body: request.loggedIn
           ? FutureBuilder(
-              future: request.get(
-                  "https://restore-the-shore.up.railway.app/myaccount/json/"),
+              future: fetchUserProfile(request),
               builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
                   return const Center(child: CircularProgressIndicator());
                 } else {
-                  _point = snapshot.data[0]["fields"]["user_point"];
-                  _username = snapshot.data[0]["fields"]["username"];
+                  _point = snapshot.data[0].fields.userPoint;
+                  _username = snapshot.data[0].fields.username;
                   _numOfEvent =
-                      snapshot.data[0]["fields"]["events_joined"].length;
+                      snapshot.data[0].fields.eventsJoined.length;
 
                   return Column(
                     children: [
@@ -72,18 +74,18 @@ class _MyAccountPageState extends State<MyAccountPage> {
                                     Image(
                                         image: _point >= 200
                                             ? const AssetImage(
-                                                'assets/badge/platinum.png')
+                                                'lib/assets/badge/platinum.png')
                                             : _point >= 150
                                                 ? const AssetImage(
-                                                    'assets/badge/gold.png')
+                                                    'lib/assets/badge/gold.png')
                                                 : _point >= 100
                                                     ? const AssetImage(
-                                                        'assets/badge/silver.png')
+                                                        'lib/assets/badge/silver.png')
                                                     : _point >= 50
                                                         ? const AssetImage(
-                                                            'assets/badge/bronze.png')
+                                                            'lib/assets/badge/bronze.png')
                                                         : const AssetImage(
-                                                            'assets/badge/no_point.png')),
+                                                            'lib/assets/badge/no_point.png')),
                                   ],
                                 ),
                               ),
@@ -104,19 +106,37 @@ class _MyAccountPageState extends State<MyAccountPage> {
                                   fontSize: 24,
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ElevatedButton(
-                                    onPressed:
-                                        () {}, //request.logout("LOGOUTURL"),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.redAccent,
-                                    ),
-                                    child: const Text("Logout"),
-                                  ),
-                                ],
+                              const SizedBox(height: 6),
+                              Chip(
+                                shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                  color: _point >= 200
+                                      ? Color.fromRGBO(229, 228, 226, 1)
+                                      : _point >= 150
+                                      ? Color.fromRGBO(255,215,0, 1)
+                                      : _point >= 100
+                                      ? Color.fromRGBO(192,192,192, 1)
+                                      : _point >= 50
+                                      ? Color.fromRGBO(205, 127, 50, 1)
+                                      : ColorPalette.primaryColor),
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                label: Text(
+                                  _point >= 200
+                                  ? "Platinum"
+                                      : _point >= 150
+                                  ? "Gold"
+                                      : _point >= 100
+                                  ? "Silver"
+                                      : _point >= 50
+                                  ? "Bronze"
+                                      : "No Badge"
+                                ),
+                                backgroundColor: Colors.transparent,
                               ),
+
                               const SizedBox(height: 16),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -211,6 +231,36 @@ class _MyAccountPageState extends State<MyAccountPage> {
                                   ],
                                 ),
                               ),
+                              const Spacer(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                        Navigator.push(context,
+                                            MaterialPageRoute( builder: (context) =>
+                                              const MyPasswordFormPage()));
+                                    },
+                                    child: const Text("Change Password"),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      final response = await request.logout(
+                                          "https://restore-the-shore.up.railway.app/authentication/logout");
+                                      if (!request.loggedIn) {
+                                        NavBarState.selectedIndex = 0;
+                                        Navigator.pushReplacementNamed(context, 'home');
+                                      }
+                                    }, //request.logout("LOGOUTURL"),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.redAccent,
+                                    ),
+                                    child: const Text("Logout"),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 16,),
                             ],
                           ),
                         ),
