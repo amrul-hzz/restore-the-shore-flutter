@@ -1,3 +1,5 @@
+[![Release](https://github.com/amrul-hzz/restore-the-shore-flutter/actions/workflows/release.yaml/badge.svg)](https://github.com/amrul-hzz/restore-the-shore-flutter/actions/workflows/release.yaml)
+
 # Kelompok C03 PBP Gasal Fasilkom UI 2022/2023
 Repository ini digunakan untuk Proyek Akhir Semester pada mata kuliah PBP semester gasal Fasilkom UI 2022/2023.
 
