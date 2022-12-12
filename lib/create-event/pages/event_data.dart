@@ -93,28 +93,7 @@ class _EventDataPageState extends State<EventDataPage> {
                                       child: const Text('More Info',
                                           style:
                                               TextStyle(color: Colors.white)),
-                                    ),
-                                    // TextButton(
-                                    //   style: ButtonStyle(
-                                    //     backgroundColor:
-                                    //         MaterialStateProperty.all(
-                                    //             Colors.redAccent),
-                                    //   ),
-                                    //   onPressed: () async {
-                                    //     var pk = snapshot.data![index].pk;
-                                    //     final response = await request.post(
-                                    //         "https://restore-the-shore.up.railway.app/create-event/delete-event/$pk/",
-                                    //         {});
-                                    //     Future.delayed(Duration(seconds: 2),
-                                    //         () {
-                                    //       Navigator.pop(context, 'event-data');
-                                    //       fetchEventList();
-                                    //     });
-                                    //   },
-                                    //   child: const Text('Delete',
-                                    //       style:
-                                    //           TextStyle(color: Colors.white)),
-                                    // ),
+                                    )
                                   ],
                                 ),
                               ],

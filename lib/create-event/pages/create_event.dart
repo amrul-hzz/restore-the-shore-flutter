@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:restore_the_shore_flutter/create-event/utils/add_event.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'dart:core';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 class CreateEventPage extends StatefulWidget {
   const CreateEventPage({super.key});
@@ -24,6 +21,10 @@ class _CreateEventPageState extends State<CreateEventPage> {
   String _deskripsi = "";
   DateTime? tanggalMulai;
   DateTime? tanggalAkhir;
+
+  bool isNumeric(String value) {
+    return int.tryParse(value) != null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +156,10 @@ class _CreateEventPageState extends State<CreateEventPage> {
                       },
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
-                          return 'Nominal budget wajib diisi!';
+                          return 'Nomor partisipan wajib diisi!';
+                        }
+                        if (!isNumeric(value)) {
+                          return 'Nomor partisipan harus berupa angka!';
                         }
                         return null;
                       },
@@ -181,11 +185,12 @@ class _CreateEventPageState extends State<CreateEventPage> {
                           },
                         ),
                         Text(tanggalMulai == null
-                            ? 'Belum ada tanggal yang dipilih'
-                            : tanggalMulai.toString()),
+                            ? 'Tanggal mulai wajib dipilih!'
+                            : "${tanggalMulai!.year.toString().padLeft(4, '0')}-${tanggalMulai!.month.toString().padLeft(2, '0')}-${tanggalMulai!.day.toString().padLeft(2, '0')}"),
                       ],
                     ),
                   ),
+                  SizedBox(height: 5),
                   Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -206,11 +211,12 @@ class _CreateEventPageState extends State<CreateEventPage> {
                           },
                         ),
                         Text(tanggalAkhir == null
-                            ? 'Belum ada tanggal yang dipilih'
-                            : tanggalAkhir.toString()),
+                            ? 'Tanggal akhir wajib dipilih!'
+                            : "${tanggalAkhir!.year.toString().padLeft(4, '0')}-${tanggalAkhir!.month.toString().padLeft(2, '0')}-${tanggalAkhir!.day.toString().padLeft(2, '0')}"),
                       ],
                     ),
                   ),
+                  SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
@@ -234,10 +240,24 @@ class _CreateEventPageState extends State<CreateEventPage> {
                         if (value == null || value.isEmpty) {
                           return 'Foto pantai wajib diisi!';
                         }
+                        Uri uri;
+                        try {
+                          uri = Uri.parse(value);
+                        } catch (error) {
+                          return 'URL tidak valid';
+                        }
+                        if (!(uri.isAbsolute)) return 'URL tidak valid';
                         return null;
                       },
                     ),
                   ),
+                  SizedBox(height: 10),
+                  Image.network(
+                    _fotoPantai,
+                    width: 300,
+                    fit: BoxFit.fitWidth,
+                  ),
+                  SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
@@ -277,136 +297,101 @@ class _CreateEventPageState extends State<CreateEventPage> {
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
                 onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    final response = await request.post(
-                        'https://restore-the-shore.up.railway.app/create-event/add/',
-                        {
-                          "namaEvent": _namaEvent,
-                          "namaPantai": _namaPantai,
-                          "alamatPantai": _alamatPantai,
-                          "jumlahPartisipan": _jumlahPartisipan.toString(),
-                          "fotoPantai": _fotoPantai,
-                          "deskripsi": _deskripsi,
-                          "tanggalMulai":
-                              "${tanggalMulai!.year.toString().padLeft(4, '0')}-${tanggalMulai!.month.toString().padLeft(2, '0')}-${tanggalMulai!.day.toString().padLeft(2, '0')}",
-                          "tanggalAkhir":
-                              "${tanggalAkhir!.year.toString().padLeft(4, '0')}-${tanggalAkhir!.month.toString().padLeft(2, '0')}-${tanggalAkhir!.day.toString().padLeft(2, '0')}",
-                        });
+                  if (tanggalAkhir != null || tanggalAkhir != null) {
+                    if (_formKey.currentState!.validate()) {
+                      final response = await request.post(
+                          'https://restore-the-shore.up.railway.app/create-event/add-mobile/',
+                          {
+                            "username": request.jsonData['username'],
+                            "namaEvent": _namaEvent,
+                            "namaPantai": _namaPantai,
+                            "alamatPantai": _alamatPantai,
+                            "jumlahPartisipan": _jumlahPartisipan.toString(),
+                            "fotoPantai": _fotoPantai,
+                            "deskripsi": _deskripsi,
+                            "tanggalMulai":
+                                "${tanggalMulai!.year.toString().padLeft(4, '0')}-${tanggalMulai!.month.toString().padLeft(2, '0')}-${tanggalMulai!.day.toString().padLeft(2, '0')}",
+                            "tanggalAkhir":
+                                "${tanggalAkhir!.year.toString().padLeft(4, '0')}-${tanggalAkhir!.month.toString().padLeft(2, '0')}-${tanggalAkhir!.day.toString().padLeft(2, '0')}",
+                          });
+                    }
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Dialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          elevation: 15,
+                          child: Container(
+                            child: ListView(
+                              padding: const EdgeInsets.all(10.0),
+                              shrinkWrap: true,
+                              children: <Widget>[
+                                const SizedBox(height: 10),
+                                const Center(
+                                    child: const Text(
+                                        'Event successfully created!',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold))),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Navigator.pushReplacementNamed(
+                                        context, 'create-event');
+                                  },
+                                  child: const Text('Kembali'),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Dialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          elevation: 15,
+                          child: Container(
+                            child: ListView(
+                              padding: const EdgeInsets.all(10.0),
+                              shrinkWrap: true,
+                              children: <Widget>[
+                                const SizedBox(height: 10),
+                                const Center(
+                                    child: const Text(
+                                        'Periksa kembali input anda!',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold))),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Kembali'),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
                   }
-                  //print("berhasil");
-                  // if (_formKey.currentState!.validate()) {
-                  //   createEvent(
-                  //       request,
-                  //       _namaEvent,
-                  //       _namaPantai,
-                  //       _alamatPantai,
-                  //       _jumlahPartisipan,
-                  //       _fotoPantai,
-                  //       _deskripsi,
-                  //       tanggalMulai!,
-                  //       tanggalAkhir!);
-                  // }
-
-                  //print(response.statusCode);
-                  // createEvent(
-                  //     request,
-                  //     _namaEvent,
-                  //     _namaPantai,
-                  //     _alamatPantai,
-                  //     _jumlahPartisipan,
-                  //     _fotoPantai,
-                  //     _deskripsi,
-                  //     tanggalMulai!,
-                  //     tanggalAkhir!);
-
-                  // if (_formKey.currentState!.validate()) {
-                  //   final response = await http.post(
-                  //     Uri.parse(
-                  //         'https://restore-the-shore.up.railway.app/create-event/add/'),
-                  //     body: jsonEncode(<String, dynamic>{
-                  //       "namaEvent": _namaEvent,
-                  //       "namaPantai": _namaPantai,
-                  //       "alamatPantai": _alamatPantai,
-                  //       "jumlahPartisipan": _jumlahPartisipan,
-                  //       "fotoPantai": _fotoPantai,
-                  //       "deskripsi": _deskripsi,
-                  //       "tanggalMulai":
-                  //           "${tanggalMulai!.year.toString().padLeft(4, '0')}-${tanggalMulai!.month.toString().padLeft(2, '0')}-${tanggalMulai!.day.toString().padLeft(2, '0')}",
-                  //       "tanggalAkhir":
-                  //           "${tanggalAkhir!.year.toString().padLeft(4, '0')}-${tanggalAkhir!.month.toString().padLeft(2, '0')}-${tanggalAkhir!.day.toString().padLeft(2, '0')}",
-                  //     }),
-                  //   );
-
-                  //   print(response.statusCode);
-
-                  //print("michaelllllll");
-                  // var map = new Map<String, String>();
-                  // map['namaEvent'] = _namaEvent;
-                  // map['namaPantai'] = _namaPantai;
-                  // map['alamatPantai'] = _alamatPantai;
-                  // map['jumlahPartisipan'] = _jumlahPartisipan.toString();
-                  // map['fotoPantai'] = _fotoPantai;
-                  // map['deskripsi'] = _deskripsi;
-                  // map['tanggalMulai'] = tanggalMulai.toString();
-                  // map['tanggalAkhir'] = tanggalAkhir.toString();
-                  // final response = await request.post(
-                  //     "https://restore-the-shore.up.railway.app/create-event/add/",
-                  //     {
-                  //       "namaEvent": _namaEvent,
-                  //       "namaPantai": _namaPantai,
-                  //       "alamatPantai": _alamatPantai,
-                  //       "jumlahPartisipan": _jumlahPartisipan.toString(),
-                  //       "fotoPantai": _fotoPantai,
-                  //       "deskripsi": _deskripsi,
-                  //       "tanggalMulai": tanggalMulai.toString(),
-                  //       "tanggalAkhir": tanggalAkhir.toString(),
-                  //     });
-                  // showDialog(
-                  //   context: context,
-                  //   builder: (context) {
-                  //     return Dialog(
-                  //       shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(10),
-                  //       ),
-                  //       elevation: 15,
-                  //       child: Container(
-                  //         child: ListView(
-                  //           padding: const EdgeInsets.all(20.0),
-                  //           shrinkWrap: true,
-                  //           children: <Widget>[
-                  //             Center(child: const Text('Informasi Data')),
-                  //             SizedBox(height: 20),
-                  //             Text('Judul : $_namaPantai'),
-                  //             Text('Nominal : $_namaEvent'),
-                  //             Text('Jenis : $_alamatPantai'),
-                  //             Text('Judul : $_jumlahPartisipan'),
-                  //             Text('Nominal : $_fotoPantai'),
-                  //             Text('Jenis : $_deskripsi'),
-                  //             Text('Jenis : $tanggalMulai'),
-                  //             Text('Jenis : $tanggalAkhir'),
-                  //             TextButton(
-                  //               onPressed: () {
-                  //                 Navigator.pop(context);
-                  //               },
-                  //               child: const Text('Kembali'),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     );
-                  //   },
-                  // );
-                  // setBudget(_judul, _nominal, jenis!, tanggal!);
-                  //}
                 },
                 child: const Text(
-                  "Simpan",
-                  style: TextStyle(color: Colors.white),
+                  "Create Event",
+                  style: TextStyle(color: Colors.white, fontSize: 17),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
         ],
       ),
     );
