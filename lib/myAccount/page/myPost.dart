@@ -69,7 +69,7 @@ class _MyPostPageState extends State<MyPostPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "${snapshot.data![index].fields.creatorName}",
+                              "${snapshot.data![index].fields.creator_name}",
                               style: const TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
