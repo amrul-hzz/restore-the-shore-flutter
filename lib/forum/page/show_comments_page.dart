@@ -86,9 +86,9 @@ class _ShowCommentsPageState extends State<ShowCommentsPage> {
                 Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget> [
-                        FloatingActionButton(
+                        ElevatedButton(
                           onPressed: () {
                             Navigator.push(
                                     context,
@@ -97,7 +97,7 @@ class _ShowCommentsPageState extends State<ShowCommentsPage> {
                                     ),
                                   );
                           },
-                          backgroundColor: Colors.blue,
+                         
                           child: const Icon(Icons.add),
                         ),
                       ]

@@ -108,20 +108,20 @@ class _ForumPageState extends State<ForumPage> {
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget> [
-                        FloatingActionButton(
+                        ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pop(context);
+                            Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PostPostPage()                                
                                     ),
                                   );
                           },
-                          backgroundColor: Colors.blue,
                           child: const Icon(Icons.add),
                         ),
                       ]
