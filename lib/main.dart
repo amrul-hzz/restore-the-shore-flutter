@@ -62,9 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       bottomNavigationBar:
           const NavBar(), // ini cara buatr NavBar nya, jangan lupa import dulu
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+      body: ListView(
+        //child: Column(
+        //  mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
               child: Image.asset(
@@ -117,12 +117,13 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               child: Text(
                 '-------Our Visions-------',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
                   color: Color.fromARGB(255, 35, 32, 115),
                 ),
               ),
-              margin: const EdgeInsets.only(left: 70.0, right: 70.0),
+              margin: const EdgeInsets.all(20.0),
             ),
             Card(
               shape: RoundedRectangleBorder(  
@@ -138,12 +139,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     title: Text(  
                       'Make the Shores Clean',  
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 30.0)  
+                      style: TextStyle(fontSize: 20.0)  
                     ),  
                     subtitle: Text(  
                       'Now, lots of beaches contains lots of litter. The litters, like plastic ones, are very dangerous to the envronment and marine life. Clean shores makes oceans healthy, also to help preserve marine life.',  
                       textAlign: TextAlign.justify,
-                      style: TextStyle(fontSize: 18.0)  
+                      style: TextStyle(fontSize: 13.0)  
                     ),  
                   ),
                 ],
@@ -163,12 +164,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     title: Text(  
                       'Preserve The Shores',  
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 30.0)  
+                      style: TextStyle(fontSize: 20.0)  
                     ),  
                     subtitle: Text(  
                       'Beaches have been an important part for a lot of sectors. Beaches attract a lot of tourists, which means beaches contribute for the economy. Beaches are also the home for some animals and marine life.',  
                       textAlign: TextAlign.justify,
-                      style: TextStyle(fontSize: 18.0)  
+                      style: TextStyle(fontSize: 13.0)  
                     ),  
                   ),
                 ],
@@ -188,12 +189,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     title: Text(  
                       'Raise Awareness to The Importance of Beaches',  
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 30.0)  
+                      style: TextStyle(fontSize: 20.0)  
                     ),  
                     subtitle: Text(  
                       'By participating in these events, participants can raise awareness of the importance of beaches to even more people, so more people will have the knowledge and will be more motivated to preserve beaches.',  
                       textAlign: TextAlign.justify,
-                      style: TextStyle(fontSize: 18.0)  
+                      style: TextStyle(fontSize: 13.0)  
                     ),  
                   ),
                 ],
@@ -202,11 +203,13 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               child: Text(
                 '© 2022 - Restore The Shore - All rights reserved',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
                   color: Color.fromARGB(255, 35, 32, 115),
                 ),
               ),
+              margin: const EdgeInsets.only(top: 15.0),
             )/*
               Container(
                 color: Color.fromARGB(255, 7, 229, 229),
@@ -257,7 +260,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),*/
           ],
-        ),
+        //),
       ),
     );
   }
