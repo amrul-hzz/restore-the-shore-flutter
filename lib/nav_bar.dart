@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:restore_the_shore_flutter/colorpalette.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar();
 
   @override
-  _NavBarState createState() => _NavBarState();
+  NavBarState createState() => NavBarState();
 }
 
-class _NavBarState extends State<NavBar> {
-  static int _selectedIndex = 0;
+class NavBarState extends State<NavBar> {
+  static int selectedIndex = 0;
 
   // Tambahin route name yang udah ditambahin di main ke sini, urutannya sesuain aja
-  static List<String> listRoute = ['home', 'leaderboard', 'my-account'];
+  static List<String> listRoute = [
+    'home',
+    'forum',
+    'timeline',
+    'create-event',
+    'leaderboard',
+    'my-account',
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
-      Navigator.pushReplacementNamed(context,listRoute[_selectedIndex]);
+      selectedIndex = index;
+      Navigator.pushReplacementNamed(context, listRoute[selectedIndex]);
     });
   }
 
@@ -25,10 +33,25 @@ class _NavBarState extends State<NavBar> {
     return BottomNavigationBar(
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      items: const <BottomNavigationBarItem>[ // Nanti tambahin item nya kesini sesuai urutan
+      unselectedItemColor: ColorPalette.secondaryColor,
+      selectedItemColor: ColorPalette.primaryColor,
+      items: const <BottomNavigationBarItem>[
+        // Nanti tambahin item nya kesini sesuai urutan
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.chat), // [PROBLEM] ntah kenapa icon di navbar jd putih
+          label: 'Forum',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.timeline),
+          label: 'Timeline',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.add),
+          label: 'Create Event',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.onetwothree),
@@ -39,7 +62,7 @@ class _NavBarState extends State<NavBar> {
           label: 'My Account',
         ),
       ],
-      currentIndex: _selectedIndex, //New
+      currentIndex: selectedIndex, //New
       onTap: _onItemTapped,
     );
   }
