@@ -73,46 +73,153 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               )
             ),
-            Text(
-              'Restore the Shore',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
             Container(
-              color: Color.fromARGB(255, 35, 32, 115),
               child: Text(
-                'Hello environmentalists! Beaches have always been an important element for the environment and sea life. Restore the Shore is an interactive website where users can participate in events to clean beaches and post about them in the website. Users can get points and earn badges for joining events!',
-                textAlign: TextAlign.justify,
+                'Restore the Shore',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 13,
+                  fontSize: 20,
+                  color: Color.fromARGB(255, 35, 32, 115),
                 ),
               ),
+              margin: const EdgeInsets.only(left: 20.0, right: 20.0),
             ),
-            Text(
-              '-------Our Visions-------',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black,
+            Card(
+              shape: RoundedRectangleBorder(  
+                borderRadius: BorderRadius.circular(15.0),  
+              ),  
+              color: Color.fromARGB(255, 35, 32, 115), 
+              elevation: 10, 
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[  
+                  const ListTile(  
+                    //leading: Icon(Icons.album, size: 60),   
+                    subtitle: Text(  
+                      'Hello environmentalists! Beaches have always been an important element for the environment and sea life. Restore the Shore is an interactive website where users can participate in events to clean beaches and post about them in the website. Users can get points and earn badges for joining events!',  
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        color: Colors.white,
+                      )  
+                    ),  
+                  ),
+                ],
               ),
             ),
-            Text(
-              'Make The Shores Clean',
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
+            FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TimelineHomePage()));
+              },
+              elevation: 0,
+              backgroundColor: ColorPalette.secondaryColor.shade800,
+              label: const Text("See Events"),
+            ),
+            Container(
+              child: Text(
+                '-------Our Visions-------',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromARGB(255, 35, 32, 115),
+                ),
+              ),
+              margin: const EdgeInsets.only(left: 15.0, right: 15.0),
+            ),
+            Card(
+              shape: RoundedRectangleBorder(  
+                borderRadius: BorderRadius.circular(15.0),  
+              ),  
+              color: Color.fromARGB(255, 7, 229, 229), 
+              elevation: 10, 
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[  
+                  const ListTile(  
+                    //leading: Icon(Icons.album, size: 60),  
+                    title: Text(  
+                      'Make the Shores Clean',  
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 30.0)  
+                    ),  
+                    subtitle: Text(  
+                      'Now, lots of beaches contains lots of litter. The litters, like plastic ones, are very dangerous to the envronment and marine life. Clean shores makes oceans healthy, also to help preserve marine life.',  
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(fontSize: 18.0)  
+                    ),  
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              shape: RoundedRectangleBorder(  
+                borderRadius: BorderRadius.circular(15.0),  
+              ),  
+              color: Color.fromARGB(255, 7, 229, 229), 
+              elevation: 10, 
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[  
+                  const ListTile(  
+                    //leading: Icon(Icons.album, size: 60),  
+                    title: Text(  
+                      'Preserve The Shores',  
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 30.0)  
+                    ),  
+                    subtitle: Text(  
+                      'Beaches have been an important part for a lot of sectors. Beaches attract a lot of tourists, which means beaches contribute for the economy. Beaches are also the home for some animals and marine life.',  
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(fontSize: 18.0)  
+                    ),  
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              shape: RoundedRectangleBorder(  
+                borderRadius: BorderRadius.circular(15.0),  
+              ),  
+              color: Color.fromARGB(255, 7, 229, 229), 
+              elevation: 10, 
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[  
+                  const ListTile(  
+                    //leading: Icon(Icons.album, size: 60),  
+                    title: Text(  
+                      'Raise Awareness to The Importance of Beaches',  
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 30.0)  
+                    ),  
+                    subtitle: Text(  
+                      'By participating in these events, participants can raise awareness of the importance of beaches to even more people, so more people will have the knowledge and will be more motivated to preserve beaches.',  
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(fontSize: 18.0)  
+                    ),  
+                  ),
+                ],
               ),
             ),
             Container(
-              color: Color.fromARGB(255, 7, 229, 229),
               child: Text(
-                'Now, lots of beaches contains lots of litter. The litters, like plastic ones, are very dangerous to the envronment and marine life. Clean shores makes oceans healthy, also to help preserve marine life.',
-                textAlign: TextAlign.justify,
+                '© 2022 - Restore The Shore - All rights reserved',
                 style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.black,
+                  fontSize: 20,
+                  color: Color.fromARGB(255, 35, 32, 115),
+                ),
+              ),
+            )/*
+              Container(
+                color: Color.fromARGB(255, 7, 229, 229),
+                child: Text(
+                  'Now, lots of beaches contains lots of litter. The litters, like plastic ones, are very dangerous to the envronment and marine life. Clean shores makes oceans healthy, also to help preserve marine life.',
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
@@ -151,7 +258,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.black,
                 ),
               ),
-            ),
+            ),*/
           ],
         ),
       ),
