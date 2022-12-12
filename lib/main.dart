@@ -67,22 +67,19 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Container(
+              child: Image.asset(
+                'lib/assets/Logo2.png',
+                height: 60,
+                width: 120,
+              )
+            ),/*
+            Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage('https://image.cnbcfm.com/api/v1/image/107028541-1646934420167-gettyimages-101680465-ac4714a8-f421-4a76-ab21-eaa1793d80c8.jpeg?v=1646934663')
                 )
               )
-            ),
-            Container(
-              child: Text(
-                'Restore the Shore',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Color.fromARGB(255, 35, 32, 115),
-                ),
-              ),
-              margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-            ),
+            ),*/
             Card(
               shape: RoundedRectangleBorder(  
                 borderRadius: BorderRadius.circular(15.0),  
@@ -125,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Color.fromARGB(255, 35, 32, 115),
                 ),
               ),
-              margin: const EdgeInsets.only(left: 15.0, right: 15.0),
+              margin: const EdgeInsets.only(left: 70.0, right: 70.0),
             ),
             Card(
               shape: RoundedRectangleBorder(  
