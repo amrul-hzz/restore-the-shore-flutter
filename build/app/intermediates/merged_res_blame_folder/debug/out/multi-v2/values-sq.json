@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\user\\Desktop\\PBP\\restore-the-shore-flutter\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sq\\values-sq.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-3\\6b0daa5fb4c2eb7e8b55778df9b972f6\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-sq\\values.xml",
+                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-3\\22807dfb2a218ba62611ba2061ce6623\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-sq\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-3\\acbce933e4b464a5224ed377a62db1f5\\transformed\\core-1.6.0\\res\\values-sq\\values-sq.xml",
+                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-3\\7d8f12aace46a8b23bec8f4bb4c7ed21\\transformed\\core-1.6.0\\res\\values-sq\\values-sq.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-3\\e5e7315e6b6113637b4a688d0b9e0a8b\\transformed\\jetified-play-services-base-17.1.0\\res\\values-sq\\values.xml",
+                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-3\\63af5e8aa6e66d59d7380a765228b9e5\\transformed\\jetified-play-services-base-17.1.0\\res\\values-sq\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -55,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-3\\05304738454a7c6fee076a188df4c25d\\transformed\\browser-1.4.0\\res\\values-sq\\values-sq.xml",
+                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-3\\414d153c589703d8159e80125f9ca8ce\\transformed\\browser-1.4.0\\res\\values-sq\\values-sq.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

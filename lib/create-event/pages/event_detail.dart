@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restore_the_shore_flutter/create-event/function/fetch_event.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
@@ -180,7 +179,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                 Navigator.pop(context);
                 Navigator.pushReplacementNamed(context, 'event-data');
                 var pk = widget.datapk;
-                final response = await request.post(
+                await request.post(
                     "https://restore-the-shore.up.railway.app/create-event/delete-event/$pk/",
                     {});
               },
