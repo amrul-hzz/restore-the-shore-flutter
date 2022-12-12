@@ -10,15 +10,6 @@
 .svn/
 migrate_working_dir/
 
-# add comment for app center
-# gradle-wrapper.jar
-# /gradlew
-# /gradlew.bat
-/.gradle
-/captures/
-/local.properties
-GeneratedPluginRegistrant.java
-
 # IntelliJ related
 *.iml
 *.ipr
@@ -48,13 +39,12 @@ app.*.symbols
 app.*.map.json
 
 # Android Studio will place build artifacts here
-# /android/app/debug
-# /android/app/profile
-# /android/app/release
-# .env
+/android/app/debug
+/android/app/profile
+/android/app/release
+.env
 
 # Remember to never publicly share your keystore.
 # See https://flutter.dev/docs/deployment/android#reference-the-keystore-from-the-app
-key.properties
- **/*.keystore
- **/*.jks
+*.keystore
+*.jks
