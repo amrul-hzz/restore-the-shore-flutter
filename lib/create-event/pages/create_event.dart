@@ -289,7 +289,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                           'deskripsi': _deskripsi,
                           'tanggalMulai': tanggalMulai.toString(),
                           'tanggalAkhir': tanggalAkhir.toString(),
-                        }).then((value) => print("berhasil"));
+                        });
                   }
                   //print("berhasil");
                   // if (_formKey.currentState!.validate()) {
