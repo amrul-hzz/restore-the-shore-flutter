@@ -111,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     builder: (context) => const TimelineHomePage()));
               },
               elevation: 0,
-              backgroundColor: ColorPalette.secondaryColor.shade800,
+              backgroundColor: Color.fromARGB(255, 114, 114, 114),
               label: const Text("See Events"),
             ),
             Container(
