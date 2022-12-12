@@ -3,7 +3,8 @@ library umkm;
 import 'package:flutter/material.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
 import 'package:restore_the_shore_flutter/nav_bar.dart';
-import 'package:restore_the_shore_flutter/timeline/timeline_detail.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 import 'dart:convert' as convert;
 import 'dart:math';
@@ -11,7 +12,6 @@ import 'dart:math';
 import 'package:restore_the_shore_flutter/timeline/util/fetch.dart';
 
 class TimelineHomePage extends StatefulWidget {
-  static const ROUTE_NAME = "/timeline_home";
   const TimelineHomePage({super.key});
 
   @override
@@ -21,6 +21,7 @@ class TimelineHomePage extends StatefulWidget {
 class _TimelineHomePageState extends State<TimelineHomePage> {
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       bottomNavigationBar: NavBar(),
       body: FutureBuilder(
@@ -171,11 +172,47 @@ class _TimelineHomePageState extends State<TimelineHomePage> {
                                                             Container(
                                                                 width: double
                                                                     .infinity,
-                                                                child: ElevatedButton(
-                                                                    onPressed:
-                                                                        () {},
-                                                                    child: Text(
-                                                                        "Join this event"))),
+                                                                child:
+                                                                    ElevatedButton(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          var data =
+                                                                              convert.jsonEncode(
+                                                                            <String,
+                                                                                String?>{
+                                                                              "namaEvent": snapshot.data![index].namaEvent,
+                                                                              "namaPantai": snapshot.data![index].namaPantai,
+                                                                              "alamatPantai": snapshot.data![index].alamatPantai,
+                                                                              "jumlahPartisipan": snapshot.data![index].jumlahPartisipan.toString(),
+                                                                              "fotoPantai": snapshot.data![index].fotoPantai,
+                                                                              "deskripsi": snapshot.data![index].deskripsi,
+                                                                              "tanggalMulai": "${snapshot.data![index].tanggalMulai?.year}-${snapshot.data![index].tanggalMulai?.month}-${snapshot.data![index].tanggalMulai?.day}",
+                                                                              "tanggalAkhir": "${snapshot.data![index].tanggalAkhir?.year}-${snapshot.data![index].tanggalAkhir?.month}-${snapshot.data![index].tanggalAkhir?.day}",
+                                                                            },
+                                                                          );
+
+                                                                          final response = await request.postJson(
+                                                                              "https://restore-the-shore.up.railway.app/timeline/join-flutter/",
+                                                                              data);
+
+                                                                          if (response['status'] ==
+                                                                              'success') {
+                                                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                                                              content: Text("Event berhasil diikuti!"),
+                                                                            ));
+                                                                          } else if (response['status'] ==
+                                                                              'joined') {
+                                                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                                                              content: Text("Event sudah diikuti!"),
+                                                                            ));
+                                                                          } else {
+                                                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                                                              content: Text("An error occured, please try again."),
+                                                                            ));
+                                                                          }
+                                                                        },
+                                                                        child: Text(
+                                                                            "Join this event"))),
                                                           ],
                                                         ),
                                                       ),

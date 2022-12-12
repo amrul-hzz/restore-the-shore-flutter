@@ -22,28 +22,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider(
         create: (_) {
-      CookieRequest request = CookieRequest();
-      return request;
-    },
-      child : MaterialApp(
-        title: 'Restore The Shore',
-        initialRoute: '/',
-        routes: {
-          'home' : (context) => const MyHomePage(),
-          'forum': (context) => const ForumPage(),
-          'create-event': (context) => const CreateEventPage(),
-          'leaderboard' : (context) => const LeaderboardPage(), // Nanti ini ganti aja Page nya
-          'my-account' : (context) => const MyAccountPage(),
-          'login': (context) => const LoginPage(),
-          TimelineHomePage.ROUTE_NAME: (context) => const TimelineHomePage(),
-          // Nanti tambahin masing masing page nya ke sini
+          CookieRequest request = CookieRequest();
+          return request;
         },
-        theme: ThemeData(
-          primarySwatch: ColorPalette.secondaryColor,
-        ),
-        home: const MyHomePage(),
-      )
-    );
+        child: MaterialApp(
+          title: 'Restore The Shore',
+          initialRoute: '/',
+          routes: {
+            'home': (context) => const MyHomePage(),
+            'forum': (context) => const ForumPage(),
+            'create-event': (context) => const CreateEventPage(),
+            'leaderboard': (context) =>
+                const LeaderboardPage(), // Nanti ini ganti aja Page nya
+            'my-account': (context) => const MyAccountPage(),
+            'login': (context) => const LoginPage(),
+            'timeline': (context) => const TimelineHomePage(),
+            // Nanti tambahin masing masing page nya ke sini
+          },
+          theme: ThemeData(
+            primarySwatch: ColorPalette.secondaryColor,
+          ),
+          home: const MyHomePage(),
+        ));
   }
 }
 

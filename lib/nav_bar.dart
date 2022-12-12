@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restore_the_shore_flutter/colorpalette.dart';
+import 'package:restore_the_shore_flutter/timeline/timeline.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar();
@@ -18,12 +19,13 @@ class NavBarState extends State<NavBar> {
     'create-event',
     'leaderboard',
     'my-account',
+    'timeline',
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
-      Navigator.pushReplacementNamed(context,listRoute[selectedIndex]);
+      Navigator.pushReplacementNamed(context, listRoute[selectedIndex]);
     });
   }
 
@@ -34,14 +36,16 @@ class NavBarState extends State<NavBar> {
       showUnselectedLabels: false,
       unselectedItemColor: ColorPalette.secondaryColor,
       selectedItemColor: ColorPalette.primaryColor,
-      items: const <BottomNavigationBarItem>[ // Nanti tambahin item nya kesini sesuai urutan
+      items: const <BottomNavigationBarItem>[
+        // Nanti tambahin item nya kesini sesuai urutan
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.chat), // [PROBLEM] ntah kenapa icon di navbar jd putih
-          label:'Forum',
+          icon:
+              Icon(Icons.chat), // [PROBLEM] ntah kenapa icon di navbar jd putih
+          label: 'Forum',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.add),
@@ -54,6 +58,10 @@ class NavBarState extends State<NavBar> {
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'My Account',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.timeline),
+          label: 'Timeline',
         ),
       ],
       currentIndex: selectedIndex, //New

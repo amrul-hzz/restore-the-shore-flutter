@@ -7,6 +7,7 @@ import '../models/timeline_model.dart';
 Future<List<Timeline>> fetchTimeline() async {
   var url =
       Uri.parse('https://restore-the-shore.up.railway.app/create-event/json/');
+
   var response = await http.get(
     url,
     headers: {
